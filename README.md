@@ -13,4 +13,5 @@ cd .vim
 
 git submodule init && git submodule update
 
-
+## Extras
+The fonts are for airline/powerline and must be installed on the **host** terminal
