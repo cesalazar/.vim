@@ -28,3 +28,9 @@
 [submodule "extras/fonts"]
 	path = extras/fonts
 	url = https://github.com/powerline/fonts.git
+[submodule "bundle/vim-tmux"]
+	path = bundle/vim-tmux
+	url = https://github.com/tmux-plugins/vim-tmux.git
+[submodule "/Users/cs/.vim/bundle/vim-tmux-focus-events"]
+	path = /Users/cs/.vim/bundle/vim-tmux-focus-events
+	url = https://github.com/tmux-plugins/vim-tmux-focus-events.git
