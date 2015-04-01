@@ -5,7 +5,12 @@ filetype plugin indent on
 set encoding=utf-8
 set number
 
-"airline config
+" Tab management
+map <C-j> :tabp<cr>
+map <C-k> :tabn<cr>
+map <C-n> :tabnew<cr>
+
+" airline config
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 
