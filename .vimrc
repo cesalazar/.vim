@@ -9,6 +9,7 @@ set number
 map <C-j> :tabp<cr>
 map <C-k> :tabn<cr>
 map <C-n> :tabnew<cr>
+map <C-w> :tabclose<cr>
 
 " ctrl config
 let g:ctrlp_map = '<c-p>'
