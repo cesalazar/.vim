@@ -3,26 +3,30 @@ syntax on
 filetype plugin indent on
 
 set encoding=utf-8
-set number
 set ts=2
 
 let mapleader = "-"
 nnoremap <leader>n :NERDTreeToggle<cr>
-
-" vimrc
-nnoremap <leader>ev :split $MYVIMRC<cr>
-nnoremap <leader>rv :source $MYVIMRC<cr>
-
-"nnoremap <leader>- :split<cr>
-
+nnoremap <leader>p :set paste!<cr>
+nnoremap <leader>w :set wrap!<cr>:se wrap?<cr>
+nnoremap <leader>u :set number!<cr>
+nnoremap <leader><esc> :q!<cr>
+nnoremap <leader>rell :source $MYVIMRC<cr>
+nnoremap <leader>y "+yy
+nnoremap <leader>m :set mouse=a<cr>
+nnoremap <leader>M :set mouse=h<cr>
+nnoremap <leader>h :set hlsearch!<cr>
+nnoremap <leader>vs :vsplit<cr>
+nnoremap <leader>hs :split<cr>
 nnoremap <leader><esc> :q!<cr>
 
 " Config
 set number
 set ignorecase
+set mouse=a
+set background=light
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-set background=light
 
 " Tab management
 map Ô :tabp<cr>
