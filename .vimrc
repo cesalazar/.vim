@@ -3,7 +3,11 @@ syntax on
 filetype plugin indent on
 
 set encoding=utf-8
-set ts=2
+"set ts=2
+set autoindent
+set expandtab
+set softtabstop=4
+set shiftwidth=4
 
 let mapleader = "-"
 nnoremap <leader>n :NERDTreeToggle<cr>
@@ -19,6 +23,10 @@ nnoremap <leader>h :set hlsearch!<cr>
 nnoremap <leader>vs :vsplit<cr>
 nnoremap <leader>hs :split<cr>
 nnoremap <leader><esc> :q!<cr>
+
+" vim-easymotion search
+nmap s <leader><leader>s
+nmap S <leader><leader>w
 
 " Config
 set number
@@ -44,6 +52,19 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects
+  " .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " bind K to grep word under cursor
 " Disabled because of vim-tmux bundle
