@@ -9,6 +9,8 @@ set number
 set ignorecase
 set mouse=a
 set background=light
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
 set autoindent
 set expandtab
 set softtabstop=4
@@ -16,6 +18,11 @@ set shiftwidth=4
 set incsearch
 set splitbelow
 set splitright
+
+
+" NERDTree options
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
 
 
 let mapleader = "-"
@@ -55,8 +62,14 @@ nmap S <leader><leader>w
 
 " Tab management
 map <leader>j :tabprevious<cr>
-map <leader>k :tabn<cr>
+map <leader>k :tabnext<cr>
 map <leader>t :tabnew<cr>
+
+
+" Buffer management
+map <leader>h :bprev<cr>
+map <leader>l :bnext<cr>
+map <leader>x :bdelete<cr>
 
 
 "---------Auto-Command---------
@@ -72,16 +85,6 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-
-
-" Powerline config
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-
-
-" NERDTree config
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
 
 
 " The Silver Searcher
