@@ -18,6 +18,7 @@ set shiftwidth=4
 set incsearch
 set splitbelow
 set splitright
+set directory=~/.vim/swapfiles//
 
 
 " NERDTree options
