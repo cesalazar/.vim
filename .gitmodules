@@ -49,3 +49,9 @@
 [submodule "bundle/mru"]
 	path = bundle/mru
 	url = https://github.com/yegappan/mru.git
+[submodule "bundle/YankRing"]
+	path = bundle/YankRing
+	url = https://github.com/vim-scripts/YankRing.vim.git
+[submodule "bundle/vim-multiple-cursors"]
+	path = bundle/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors.git

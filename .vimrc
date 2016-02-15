@@ -41,6 +41,8 @@ nnoremap <leader>o :only<cr>
 nnoremap <leader><esc> :q!<cr>
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>T :tag 
+map <leader>r :MRU<cr>
+map <leader>Y :YRShow<cr>
 map <leader>y "+y
 
 
@@ -50,9 +52,9 @@ map <C-l> <C-w>l
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 " Restore split size
-nnoremap <leader>= <C-w>=
+map <leader>= <C-w>=
 " Maximize split
-nnoremap <leader>0 <C-w><bar>
+map <leader>0 <C-w><bar>
 
 
 " vim-easymotion search
@@ -81,10 +83,15 @@ augroup END
 
 
 " ctrlp config
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+
+" YankRing config
+let g:yankring_replace_n_pkey = '<leader>z'
+let g:yankring_replace_n_nkey = '<leader>a'
 
 
 " The Silver Searcher

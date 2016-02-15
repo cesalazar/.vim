@@ -3,13 +3,12 @@ My vim configuration, including plugins as git submodules. Tim Pope doens't like
 
 
 ## Usage
-cd ~
 
-ln -s .vim/.vimrc .
+git clone https://github.com/cesalazar/.vim.git ~/.vim
 
-git clone https://github.com/cesalazar/.vim.git
+ln -s ~/.vim/.vimrc ~/.
 
-cd .vim
+cd ~/.vim
 
 git submodule init && git submodule update
 
