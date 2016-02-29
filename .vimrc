@@ -12,13 +12,18 @@ set background=light
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 set autoindent
+set autoread
 set expandtab
+set smarttab
 set softtabstop=4
+set tabstop=4
 set shiftwidth=4
 set incsearch
 set splitbelow
 set splitright
 set directory=~/.vim/swapfiles//
+set wildmenu
+set so=7
 
 
 " NERDTree options
@@ -45,6 +50,17 @@ nnoremap <leader>T :tag
 map <leader>r :MRU<cr>
 map <leader>Y :YRShow<cr>
 map <leader>y "+y
+
+" Beautify xml and json (not too happy with the current keys)
+map <f8> :% !xmllint --format - <cr>
+map <f9> :%!python -m json.tool <cr>
+
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
 
 
 "---------Split Management---------
@@ -81,6 +97,20 @@ augroup autosourcing
     autocmd!
     autocmd BufWritePost .vimrc source %
 augroup END
+
+
+" Failed attempt at renaming tmux windows. Didn't achieve the desired
+" behavior.
+" 
+" autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
+" set title
+" augroup tmuxpath
+"     autocmd!
+"     autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+"     autocmd VimLeave * call system("tmux rename-window zsh") 
+"     autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
+"     set title
+" augroup END
 
 
 " ctrlp config
