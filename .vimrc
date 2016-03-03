@@ -70,8 +70,22 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 " Restore split size
 map <leader>= <C-w>=
-" Maximize split
+" Maximize active split
 map <leader>0 <C-w><bar>
+" Manipulate split width
+nmap <Plug>ReduceSplitWidth 10<C-w>>
+    \:call repeat#set("\<Plug>ReduceSplitWidth")<CR>
+nmap <leader><S-l> <Plug>ReduceSplitWidth
+nmap <Plug>IncreaseSplitWidth 10<C-w><
+    \:call repeat#set("\<Plug>IncreaseSplitWidth")<CR>
+nmap <leader><S-h> <Plug>IncreaseSplitWidth
+" Manipulate split height
+nmap <Plug>ReduceSplitHeight 5<C-w>-
+    \:call repeat#set("\<Plug>ReduceSplitHeight")<CR>
+nmap <leader><S-j> <Plug>ReduceSplitHeight
+nmap <Plug>IncreaseSplitHeight 5<C-w>+
+    \:call repeat#set("\<Plug>IncreaseSplitHeight")<CR>
+nmap <leader><S-k> <Plug>IncreaseSplitHeight
 
 
 " vim-easymotion search
