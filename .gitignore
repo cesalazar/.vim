@@ -1,3 +1,5 @@
 gitconf
 *.swp
 .netrwhist
+swapfiles/*
+!swapfiles/.keep

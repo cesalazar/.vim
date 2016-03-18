@@ -137,6 +137,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " YankRing config
 let g:yankring_replace_n_pkey = '<leader>z'
 let g:yankring_replace_n_nkey = '<leader>a'
+let g:yankring_history_dir = '~/.vim/swapfiles/'
 
 
 " The Silver Searcher
