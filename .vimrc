@@ -1,7 +1,7 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-
+hi Visual ctermfg=Yellow ctermbg=NONE cterm=bold,underline
 
 " Config
 set encoding=utf-8
