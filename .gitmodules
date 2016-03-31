@@ -55,3 +55,6 @@
 [submodule "bundle/vim-multiple-cursors"]
 	path = bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "bundle/multiplesearch"]
+	path = bundle/multiplesearch
+	url = https://github.com/vim-scripts/MultipleSearch.git

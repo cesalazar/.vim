@@ -50,6 +50,7 @@ nnoremap <leader>T :tag
 map <leader>r :MRU<cr>
 map <leader>Y :YRShow<cr>
 map <leader>y "+y
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " Beautify xml and json (not too happy with the current keys)
 map <f8> :% !xmllint --format - <cr>
