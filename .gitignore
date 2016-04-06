@@ -3,3 +3,5 @@ gitconf
 .netrwhist
 swapfiles/*
 !swapfiles/.keep
+backups/*
+!backups/.keep

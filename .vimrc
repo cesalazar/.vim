@@ -21,7 +21,6 @@ set shiftwidth=4
 set incsearch
 set splitbelow
 set splitright
-set directory=~/.vim/swapfiles//
 set wildmenu
 set so=7
 
@@ -154,9 +153,25 @@ if executable('ag')
 endif
 
 
+" Tidy swaps
+set directory=$HOME/.vim/swapfiles//
+if !isdirectory(&directory)
+    call mkdir(&directory)
+endif
+
+" Tidy backups
+set backupdir=$HOME/.vim/backups//
+if !isdirectory(&backupdir)
+    call mkdir(&backupdir)
+endif
+
+set backupcopy=yes
+set backup
+
+
 " bind K to grep word under cursor
-" Disabled because of vim-tmux bundle
-" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" Previously disabled because of vim-tmux bundle
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 
 " Uppercase work just like lowercase
