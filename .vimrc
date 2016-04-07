@@ -88,6 +88,14 @@ nmap <Plug>IncreaseSplitHeight 5<C-w>+
 nmap <leader><S-k> <Plug>IncreaseSplitHeight
 
 
+" MultipleSearch config
+let g:MultipleSearchMaxColors = 5
+let g:MultipleSearchColorSequence = "yellow,blue,red,green,brown"
+let g:MultipleSearchTextColorSequence = "black,black,black,black,white"
+nmap <leader>f :Search 
+nmap <leader>F :SearchReset<cr>
+
+
 " vim-easymotion search
 nmap s <leader><leader>s
 nmap S <leader><leader>w
