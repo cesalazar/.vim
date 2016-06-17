@@ -97,8 +97,8 @@ nmap <leader>F :SearchReset<cr>
 
 
 " vim-easymotion search
-nmap s <leader><leader>s
-nmap S <leader><leader>w
+map s <leader><leader>s
+map S <leader><leader>w
 
 
 " Tab management

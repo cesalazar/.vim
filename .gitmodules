@@ -58,3 +58,6 @@
 [submodule "bundle/multiplesearch"]
 	path = bundle/multiplesearch
 	url = https://github.com/vim-scripts/MultipleSearch.git
+[submodule "bundle/vim-coffee-script"]
+	path = bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git
