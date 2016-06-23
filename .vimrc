@@ -106,10 +106,16 @@ map <leader>j :tabprevious<cr>
 map <leader>k :tabnext<cr>
 map <leader>t :tabnew<cr>
 
+" Go to last active tab
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent>, :exe "tabn ".g:lasttab<cr>
+
 
 " Buffer management
-map <leader>h :bprev<cr>
 map <leader>l :bnext<cr>
+map <leader>h :bprev<cr>
+map gb :bnext<cr>
+map gB :bprev<cr>
 map <leader>x :bdelete<cr>
 
 
