@@ -49,11 +49,13 @@ nnoremap <leader>T :tag
 map <leader>r :MRU<cr>
 map <leader>Y :YRShow<cr>
 map <leader>y "+y
+map <leader>P :set filetype=
+map <leader>b :Tabularize //l0<left><left><left>
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " Beautify xml and json (not too happy with the current keys)
-map <f8> :% !xmllint --format - <cr>
-map <f9> :%!python -m json.tool <cr>
+map <F8> :% !xmllint --format - <cr>
+map <F9> :% !python -m json.tool <cr>
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
