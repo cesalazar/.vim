@@ -48,10 +48,19 @@ nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>T :tag 
 map <leader>r :MRU<cr>
 map <leader>Y :YRShow<cr>
-map <leader>y "+y
 map <leader>P :set filetype=
 map <leader>b :Tabularize //l0<left><left><left>
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+
+" Use pbcopy or xclip
+if executable("pbcopy")
+    map <leader>y "+y
+    nnoremap √ :set paste<cr>"+p :set nopaste<cr>
+else
+    map <leader>y :!xclip -selection clipboard\"<cr>:undo<cr>
+endif
+
 
 " Beautify xml and json (not too happy with the current keys)
 map <F8> :% !xmllint --format - <cr>
