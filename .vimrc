@@ -113,9 +113,19 @@ map S <leader><leader>w
 
 
 " Tab management
-map <leader>j :tabprevious<cr>
-map <leader>k :tabnext<cr>
-map <leader>t :tabnew<cr>
+nmap <leader>t :tabnew<cr>
+nmap <Plug>goToPrevTab :tabprevious<cr>
+    \:call repeat#set("\<Plug>goToPrevTab")<CR>
+nmap <leader>j <Plug>goToPrevTab
+nmap <Plug>goToNextTab :tabnext<cr>
+    \:call repeat#set("\<Plug>goToNextTab")<CR>
+nmap <leader>k <Plug>goToNextTab
+nmap <Plug>moveTabLeft :tabm -1<cr>
+    \:call repeat#set("\<Plug>moveTabLeft")<CR>
+nmap <leader>< <Plug>moveTabLeft
+nmap <Plug>moveTabRight :tabm +1<cr>
+    \:call repeat#set("\<Plug>moveTabRight")<CR>
+nmap <leader>> <Plug>moveTabRight
 
 " Go to last active tab
 au TabLeave * let g:lasttab = tabpagenr()
@@ -128,6 +138,9 @@ map <leader>h :bprev<cr>
 map gb :bnext<cr>
 map gB :bprev<cr>
 map <leader>x :bdelete<cr>
+
+" Move each buffer to its own tab
+nmap <leader>\ :tab sball<cr>:tabnext<cr>
 
 
 "---------Auto-Command---------
