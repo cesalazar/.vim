@@ -2,6 +2,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 hi Visual ctermfg=Yellow ctermbg=NONE cterm=bold,underline
+hi javaScriptParens ctermfg=410 ctermbg=NONE
 
 " Config
 set encoding=utf-8
@@ -51,6 +52,9 @@ map <leader>Y :YRShow<cr>
 map <leader>P :set filetype=
 map <leader>b :Tabularize //l0<left><left><left>
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>GC :Gcommit<cr>
 
 
 " Use pbcopy or xclip
