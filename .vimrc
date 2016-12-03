@@ -154,6 +154,22 @@ augroup autosourcing
     autocmd BufWritePost .vimrc source %
 augroup END
 
+" if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+" endif
+
+" map [1;5A <C-Up>
+" map [1;5B <C-Down>
+" map [1;2D <S-Left>
+" map [1;2C <S-Right>
+" cmap [1;2D <S-Left>
+" cmap [1;2C <S-Right>
+nnoremap <Up> :m-2<CR>
+nnoremap <Down> :m+1<CR>
 
 " Failed attempt at renaming tmux windows. Didn't achieve the desired
 " behavior.
@@ -205,6 +221,17 @@ endif
 set backupdir=$HOME/.vim/backups//
 if !isdirectory(&backupdir)
     call mkdir(&backupdir)
+endif
+
+" Undotree
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 6
+let g:undotree_SetFocusWhenToggle = 1
+
+if has("persistent_undo")
+    nnoremap <F5> :UndotreeToggle<cr>
+    set undodir=$HOME/.vim/undodir//
+    set undofile
 endif
 
 set backupcopy=yes

@@ -5,3 +5,5 @@ swapfiles/*
 !swapfiles/.keep
 backups/*
 !backups/.keep
+undodir/*
+!undodir/.keep
