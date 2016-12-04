@@ -119,6 +119,10 @@ map s <Plug>(easymotion-sn)
 map S <Plug>(easymotion-wn)
 
 
+" emmet config
+let g:user_emmet_mode='a'
+
+
 " Tab management
 nmap <leader>t :tabnew<cr>
 nmap <Plug>goToPrevTab :tabprevious<cr>
