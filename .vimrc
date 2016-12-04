@@ -112,8 +112,11 @@ nmap <leader>F :SearchReset<cr>
 
 
 " vim-easymotion search
-map s <leader><leader>s
-map S <leader><leader>w
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+let g:EasyMotion_enter_jump_first = 1
+map s <Plug>(easymotion-sn)
+map S <Plug>(easymotion-wn)
 
 
 " Tab management
