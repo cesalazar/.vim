@@ -24,11 +24,14 @@ set splitbelow
 set splitright
 set wildmenu
 set so=7
+set updatetime=250
 
 
 " NERDTree options
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
+" NERDTreeTabs
+let g:nerdtree_tabs_synchronize_view=0
 
 
 let mapleader = "-"
@@ -214,6 +217,13 @@ if has("persistent_undo")
     set undodir=$HOME/.vim/undodir//
     set undofile
 endif
+
+
+" Delimitmate
+let delimitMate_matchpairs = "(:),[:],{:},<:>"
+let delimitMate_balance_matchpairs = 1
+let delimitMate_expand_space = 2
+let delimitMate_expand_cr = 2
 
 
 " incsearch (use \v for regex)
