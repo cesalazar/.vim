@@ -97,3 +97,21 @@
 [submodule "bundle/vim-css3-syntax"]
 	path = bundle/vim-css3-syntax
 	url = https://github.com/hail2u/vim-css3-syntax.git
+[submodule "bundle/taglist.vim"]
+	path = bundle/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim
+[submodule "bundle/vim-arpeggio"]
+	path = bundle/vim-arpeggio
+	url = https://github.com/kana/vim-arpeggio.git
+[submodule "bundle/colorv.vim"]
+	path = bundle/colorv.vim
+	url = https://github.com/Rykka/colorv.vim
+[submodule "bundle/vim-devicons"]
+	path = bundle/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons
+[submodule "bundle/vim-solidity"]
+	path = bundle/vim-solidity
+	url = https://github.com/tomlion/vim-solidity.git
+[submodule "bundle/vala.vim"]
+	path = bundle/vala.vim
+	url = https://github.com/arrufat/vala.vim.git
