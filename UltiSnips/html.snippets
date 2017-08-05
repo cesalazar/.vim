@@ -1,0 +1,52 @@
+
+snippet h5d "HTML5 doc"
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>$1</title>
+  <link rel="stylesheet" href="$2">
+</head>
+
+<body>
+
+  $0
+
+  <script src="$3"></script>
+</body>
+</html>
+endsnippet
+
+
+# paragraph
+snippet p "paragraph"
+<p${1: class="$2"}${3: id="$4"}>
+  ${0:${VISUAL:placeholder}}
+</p>
+endsnippet
+
+
+snippet h1 "header 1"
+<h1${1: class="$2"}${3: id="$4"}>
+  ${0:${VISUAL:placeholder}}
+</h1>
+endsnippet
+
+
+snippet div "div"
+<div${1: class="$2"}${3: id="$4"}>
+  ${0:${VISUAL:placeholder}}
+</div>
+endsnippet
+
+
+snippet fcol "foundation column"
+<div class="small-${1:12} columns">
+  ${0:${VISUAL:placeholder}}
+</div>
+endsnippet
+
+
+snippet comm "comment"
+<!-- ${0:${VISUAL}} -->
+endsnippet

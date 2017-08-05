@@ -1,0 +1,44 @@
+
+snippet :, "Object Value JS"
+${1:key}: ${0:value},
+endsnippet
+
+
+snippet : "Object key key: 'value'"
+${1:key}: ${2:"${3:value}"}${4:, }
+endsnippet
+
+
+snippet >> "arrow function"
+($1) => {
+  ${2:${VISUAL: }}$0
+}
+endsnippet
+
+
+snippet if "if statement"
+if ( ${1:${VISUAL}}$2 ) {
+  $0
+}
+endsnippet
+
+
+snippet else "else statement"
+else {
+  $0
+}
+endsnippet
+
+
+snippet elif "else if statement"
+else if ( ${1:${VISUAL}}$2 ) {
+  $0
+}
+endsnippet
+
+
+snippet tout "setTimeout function"
+setTimeout(function() {
+	${VISUAL}$0
+}${2:.bind(${3:this})}, ${1:100})
+endsnippet
