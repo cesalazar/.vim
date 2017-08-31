@@ -42,3 +42,29 @@ setTimeout(function() {
 	${VISUAL}$0
 }${2:.bind(${3:this})}, ${1:100})
 endsnippet
+
+
+snippet req "require()"
+require('$0')
+endsnippet
+
+
+snippet func "function ()"
+function$1($2) {
+  $0
+}
+endsnippet
+
+
+snippet class "class"
+class $1 {
+  constructor($2){
+    $0
+  }
+}
+endsnippet
+
+
+snippet clog "console.log()"
+console.log( ${1:${VISUAL}} )$0
+endsnippet
