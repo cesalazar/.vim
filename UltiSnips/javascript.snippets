@@ -68,3 +68,17 @@ endsnippet
 snippet clog "console.log()"
 console.log( ${1:${VISUAL}} )$0
 endsnippet
+
+
+snippet reactcomp "react component"
+const $1 = (${2:props}) => {
+  ${3:state = ''}
+
+  render(){
+    return(
+	  $0
+    )
+  }
+
+}
+endsnippet
