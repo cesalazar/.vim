@@ -60,6 +60,7 @@ let g:airline#extensions#tabline#show_close_button = 0
 
 let mapleader = "-"
 nnoremap <leader>n :NERDTreeToggle<cr>
+nnoremap <M-n> :NERDTreeToggle<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
 nnoremap <leader><esc> :q!<cr>
@@ -98,6 +99,7 @@ inoremap <silent><C-f> <C-o>F
 vnoremap <leader>Z vipzf
 " highlight last inserted text
 nnoremap gV `[v`]`  
+nnoremap <M-e> :ALEToggle<cr>
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -147,8 +149,8 @@ cabbrev help tab help
 
 
 " Beautify xml and json (not too happy with the current keys)
-map <F8> :% !xmllint --format - <cr>
 map <F9> :% !python -m json.tool <cr>
+map <F10> :% !xmllint --format - <cr>
 
 
 " Treat long lines as break lines (useful when moving around in them)
@@ -308,6 +310,30 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+
+" JSX highlighting and indent
+let g:jsx_ext_required = 0
+
+
+" ALE
+let g:ale_enabled = 0
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+let g:ale_fixers = {
+    \   'javascript': [
+    \       'standard',
+    \   ],
+    \}
+
+let g:ale_linters = {
+    \   'javascript': [
+    \       'standard',
+    \   ],
+    \}
 
 
 " Swaps
