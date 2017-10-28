@@ -1,5 +1,8 @@
 ﻿execute pathogen#infect()
-syntax on
+" syntax on
+if !exists('g:syntax_on')
+    syntax enable
+endif
 filetype plugin indent on
 
 
@@ -19,11 +22,13 @@ hi Search                        ctermbg=88    cterm=Reverse
 hi StatusLine    ctermfg=190     ctermbg=None
 hi StatusLineNC  ctermfg=190     ctermbg=None
 hi MatchParen    ctermfg=190     ctermbg=0     cterm=Bold
+hi SpellBad      ctermfg=198     ctermbg=0     cterm=Bold
 
 
 " Config
+let &showbreak='↪ '
 set encoding=utf-8
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set listchars=eol:¬,tab:▸-,extends:❯,precedes:❮
 set number
 set ignorecase
 set mouse=a
@@ -49,6 +54,8 @@ set backup
 set foldcolumn=2
 set selection=inclusive
 " set selection=exclusive
+set infercase
+set breakindent
 
 
 " Airline options
@@ -58,6 +65,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#show_close_button = 0
 
 
+" Mappings
 let mapleader = "-"
 nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <M-n> :NERDTreeToggle<cr>
@@ -70,36 +78,46 @@ nnoremap <leader>vs :vsplit<cr>
 nnoremap <leader>hs :split<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader><esc> :q!<cr>
-nnoremap <leader>ev :tabedit $MYVIMRC<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>T :tag 
 nnoremap <leader>Y :YRShow<cr>
 nnoremap <M-y> :YRShow<cr>
 nnoremap <leader>P :set filetype=
 vnoremap <leader>b :Tabularize //l0<left><left><left>
-vnoremap <C-r> "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <leader><C-r> "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>GC :Gcommit<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>e :e!<cr>
-nnoremap <Up> :move-2<CR>
-nnoremap <Down> :move+1<CR>
+nnoremap <up> :move-2<cr>
+nnoremap <down> :move+1<cr>
 nnoremap <leader>: :Ack! 
 nnoremap <leader>; :AckWindow 
 nnoremap <leader>r :CtrlPMRU<cr>
 nnoremap <M-r> :CtrlPMRU<cr>
 nnoremap <M-b> :CtrlPBuffer<CR>
-nnoremap K :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
 nnoremap <leader>CC :set textwidth=0 colorcolumn=<cr>
 nnoremap <leader>cc :set textwidth=78 colorcolumn=+1,+2<cr>
 nnoremap <leader>bd :.,$-bdelete<cr>
 nnoremap <leader>cd :cd %:p:h<cr>
-inoremap <silent><C-e> <C-o>$
-inoremap <silent><C-f> <C-o>F
-vnoremap <leader>Z vipzf
+nnoremap <leader>Z vipzf
 " highlight last inserted text
 nnoremap gV `[v`]`  
 nnoremap <M-e> :ALEToggle<cr>
+vnoremap <silent><M-j> :'<,'>TCommentAs jsx<cr>
+vnoremap <leader>y "+y
+nnoremap <silent>\ :w<cr>
+" Format lines longer than 78 cols
+vnoremap Q gq<cr>
+" While on insert, move caret to:
+" end of line
+inoremap <silent><C-e> <C-o>$
+" find character forward
+inoremap <silent><C-f> <C-o>f
+" find character backward
+inoremap <silent><C-d> <C-o>F
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -134,15 +152,6 @@ call arpeggio#map('i', '', 0, 'hj', '<C-o>B')
 call arpeggio#map('n', '', 0, 'gb', ':CtrlPBuffer<CR>')
 
 
-" Use pbcopy or xclip
-if executable("pbcopy")
-    map <leader>y "+y
-    nnoremap √ :set paste<cr>"+p :set nopaste<cr>
-else
-    map <leader>y :!xclip -selection clipboard\"<cr>:undo<cr>
-endif
-
-
 " Open help in new tab
 cabbrev h tab h
 cabbrev help tab help
@@ -156,6 +165,11 @@ map <F10> :% !xmllint --format - <cr>
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
+
+
+" Use shift-H and shift-L for move to beginning/end
+map H 0
+map L $
 
 
 " Remap VIM 0 to first non-blank character
@@ -256,7 +270,8 @@ nmap     <leader>x   :Kwbd<CR>
 
 
 " Move each buffer to its own tab
-nmap <leader>\ :tab sball<cr>:tabnext<cr>
+nmap <leader>\ :tab sball<cr>:tabonly<cr>
+" nmap <leader>\ :tabnew<cr>:Kwbd<cr>
 
 
 " Automatically source the .vimrc file
@@ -327,11 +342,17 @@ let g:ale_fixers = {
     \   'javascript': [
     \       'standard',
     \   ],
+    \   'scss': [
+    \       'stylelint',
+    \   ],
     \}
 
 let g:ale_linters = {
     \   'javascript': [
     \       'standard',
+    \   ],
+    \   'scss': [
+    \       'stylelint',
     \   ],
     \}
 
@@ -480,7 +501,7 @@ endw
 
 
 " fzf
-nnoremap <M-a> :Ag! 
+nnoremap <M-a> :Ag!<space>
 " CtrlP is more flexible to manage the buffers
 " nnoremap <M-b> :Buffers<cr>
 nnoremap <M-l> :BLines<cr>
@@ -488,7 +509,7 @@ nnoremap <M-f> :Files<cr>
 
 
 " Disable ex mode
-map Q <Nop>
+" map Q <Nop>
 
 
 " Uppercase work just like lowercase

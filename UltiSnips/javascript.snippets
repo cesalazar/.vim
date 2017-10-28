@@ -4,8 +4,8 @@ ${1:key}: ${0:value},
 endsnippet
 
 
-snippet : "Object key key: 'value'"
-${1:key}: ${2:"${3:value}"}${4:, }
+snippet : "Object 'key': 'value'"
+${1:'${2:key}'}: ${3:'${4:value}'}${5:,}${0}
 endsnippet
 
 
@@ -17,7 +17,7 @@ endsnippet
 
 
 snippet if "if statement"
-if ( ${1:${VISUAL}}$2 ) {
+if (${1:${VISUAL}}$2) {
   $0
 }
 endsnippet
@@ -31,7 +31,7 @@ endsnippet
 
 
 snippet elif "else if statement"
-else if ( ${1:${VISUAL}}$2 ) {
+else if (${1:${VISUAL}}$2) {
   $0
 }
 endsnippet
@@ -39,8 +39,8 @@ endsnippet
 
 snippet tout "setTimeout function"
 setTimeout(function() {
-	${VISUAL}$0
-}${2:.bind(${3:this})}, ${1:100})
+  ${VISUAL}$0
+}${1:.bind(this)}, ${3:1000})
 endsnippet
 
 
@@ -49,8 +49,13 @@ require('$0')
 endsnippet
 
 
+snippet imp "import from"
+import ${1:\{ $2 \}} from '$0'
+endsnippet
+
+
 snippet func "function ()"
-function$1($2) {
+function $1($2) {
   $0
 }
 endsnippet
@@ -66,19 +71,37 @@ endsnippet
 
 
 snippet clog "console.log()"
-console.log( ${1:${VISUAL}} )$0
+console.log(${1:${VISUAL}})$0
 endsnippet
 
 
-snippet reactcomp "react component"
+snippet rco "react component"
 const $1 = (${2:props}) => {
   ${3:state = ''}
 
   render(){
     return(
-	  $0
+      $0
     )
   }
 
+}
+endsnippet
+
+
+snippet rcl "react class"
+export default class ${1:${VISUAL}} extends Component {
+  constructor (${2:props}) {
+    super()
+    ${3:this.state = \{\}}
+  }
+
+  render () {
+    return (
+      <${4:div}>
+        $0
+      </$4>
+    )
+  }
 }
 endsnippet
