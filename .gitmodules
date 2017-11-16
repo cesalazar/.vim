@@ -130,3 +130,6 @@
 [submodule "bundle/ale"]
 	path = bundle/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "bundle/vim-blade"]
+	path = bundle/vim-blade
+	url = https://github.com/jwalton512/vim-blade
