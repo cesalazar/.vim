@@ -133,3 +133,9 @@
 [submodule "bundle/vim-blade"]
 	path = bundle/vim-blade
 	url = https://github.com/jwalton512/vim-blade
+[submodule "bundle/indentLine"]
+	path = bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine
+[submodule "bundle/vim-vue"]
+	path = bundle/vim-vue
+	url = https://github.com/posva/vim-vue

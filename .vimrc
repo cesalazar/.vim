@@ -16,13 +16,15 @@ hi DiffText                      ctermbg=162
 hi DiffDelete    ctermfg=15      ctermbg=52
 hi Folded        ctermfg=162     ctermbg=None  cterm=Bold
 hi FoldColumn    ctermfg=162     ctermbg=None  cterm=Bold
-hi VertSplit     ctermfg=Black   ctermbg=None  cterm=None
+hi VertSplit     ctermfg=238     ctermbg=None  cterm=None
 hi ColorColumn   ctermfg=190     ctermbg=492   cterm=None
 hi Search                        ctermbg=88    cterm=Reverse
 hi StatusLine    ctermfg=190     ctermbg=None
 hi StatusLineNC  ctermfg=190     ctermbg=None
 hi MatchParen    ctermfg=190     ctermbg=0     cterm=Bold
 hi SpellBad      ctermfg=198     ctermbg=0     cterm=Bold
+hi CursorLine    ctermfg=None    ctermbg=235   cterm=None
+hi CursorColumn  ctermfg=None    ctermbg=235   cterm=None
 
 
 " Config
@@ -58,6 +60,17 @@ set infercase
 set breakindent
 
 
+" Set options for GUI only
+if has('gui_running')
+  colorscheme elflord
+  setlocal spell spelllang=en_us
+  map <M-v> "*p
+  " no toolbar/menu
+  set guioptions=
+  set guifont=Monospace\ 14
+endif
+
+
 " Airline options
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -67,7 +80,7 @@ let g:airline#extensions#tabline#show_close_button = 0
 
 " Mappings
 let mapleader = "-"
-nnoremap <leader>n :NERDTreeToggle<cr>
+" nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <M-n> :NERDTreeToggle<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
@@ -78,18 +91,20 @@ nnoremap <leader>vs :vsplit<cr>
 nnoremap <leader>hs :split<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader><esc> :q!<cr>
+nnoremap <leader>`` :bd!<cr>
+nnoremap <leader>n :enew<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>T :tag 
 nnoremap <leader>Y :YRShow<cr>
-nnoremap <M-y> :YRShow<cr>
+nnoremap <M-y> :YRShow<cr>/
 nnoremap <leader>P :set filetype=
 vnoremap <leader>b :Tabularize //l0<left><left><left>
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 vnoremap <leader><C-r> "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
-nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>GC :Gcommit<cr>
-nnoremap <leader>w :w<cr>
+nnoremap <leader>w <C-w>
 nnoremap <leader>e :e!<cr>
 nnoremap <up> :move-2<cr>
 nnoremap <down> :move+1<cr>
@@ -118,6 +133,10 @@ inoremap <silent><C-e> <C-o>$
 inoremap <silent><C-f> <C-o>f
 " find character backward
 inoremap <silent><C-d> <C-o>F
+" Underline a line with '='
+nnoremap g= YpVr=j
+" Cut, paste and indent in HTML
+inoremap <M-j> <Esc>jddkkp==
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -214,7 +233,7 @@ let g:EasyMotion_use_upper = 1
 let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
 let g:EasyMotion_enter_jump_first = 1
 map s <Plug>(easymotion-sn)
-map S <Plug>(easymotion-wn)
+" map S <Plug>(easymotion-bd-wl)
 
 
 " emmet config
@@ -262,11 +281,17 @@ augroup TabClosed
 augroup END
 
 
+" indentLine
+let g:indentLine_char = '┆'
+let g:indentLine_color_term = 236
+let g:indentLine_fileTypeExclude = ['json']
+
+
 " Delete buffer
 " map <leader>x :bd<cr>
 " Delete a buffer but keep layout
 command! Kwbd bp|bw #
-nmap     <leader>x   :Kwbd<CR> 
+nmap <leader>x :Kwbd<CR> 
 
 
 " Move each buffer to its own tab
@@ -300,7 +325,7 @@ let g:ctrlp_prompt_mappings = {
 
 
 " YankRing config
-let g:yankring_window_height = -1
+let g:yankring_window_height = 20
 let g:yankring_min_element_length = 2
 let g:yankring_replace_n_pkey = '<leader>z'
 let g:yankring_replace_n_nkey = '<leader>a'
@@ -343,7 +368,13 @@ let g:ale_fixers = {
     \       'standard',
     \   ],
     \   'scss': [
+    \       'stylelint --syntax scss',
+    \   ],
+    \   'css': [
     \       'stylelint',
+    \   ],
+    \   'php': [
+    \       'phpcbf',
     \   ],
     \}
 
@@ -352,7 +383,13 @@ let g:ale_linters = {
     \       'standard',
     \   ],
     \   'scss': [
+    \       'stylelint --syntax scss',
+    \   ],
+    \   'css': [
     \       'stylelint',
+    \   ],
+    \   'php': [
+    \       'phpcs',
     \   ],
     \}
 
@@ -423,6 +460,7 @@ let NERDTreeCreatePrefix = 'silent keepalt keepjumps'
 let NERDTreeBookmarksFile = $HOME.'/.vim/swapfiles/.NERDTreeBookmarks'
 let g:NERDTreeDirArrowExpandable = ''   " default: '▸'
 let g:NERDTreeDirArrowCollapsible = ''  " default: '▾'
+let NERDTreeIgnore=['node_modules$[[dir]]']
 
 
 " NERDTree-Tabs
@@ -430,6 +468,7 @@ let g:nerdtree_tabs_open_on_new_tab = 1
 let g:nerdtree_tabs_synchronize_view = 0
 let g:nerdtree_tabs_smart_startup_focus = 1
 let g:nerdtree_tabs_no_startup_for_diff = 1
+let g:nerdtree_tabs_open_on_gui_startup = 0
 
 
 " Open NERDTree only if no file was specified
@@ -440,7 +479,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | let g:nerdtree_tabs_o
 
 " Blade and PHP
 autocmd FileType php setlocal shiftwidth=4
-autocmd BufRead,BufNewFile *.blade.php setlocal filetype=html
+autocmd BufRead,BufNewFile *.blade.php setlocal shiftwidth=2 nosmartindent nobreakindent
 
 
 " UtilSnips
@@ -455,10 +494,9 @@ let g:ultisnips_javascript = {
 aug AutoViews
   au!
   " Automatically save last view
-  " autocmd QuitPre,BufWrite * mkview 0
-  autocmd BufWrite,QuitPre ?* mkview 0
+  " autocmd BufWrite,QuitPre ?* mkview 0
+  autocmd BufWrite ?* mkview 0
   " Restore the view automatically
-  " autocmd BufRead *.html,*.yml,*.css,*.sass,*.js,*.vimrc,*.php loadview 0
   autocmd BufRead ?* silent loadview 0
 aug END 
 
@@ -491,7 +529,7 @@ function! ShowLastCmd()
 endfunction
 
 
-" fix meta-keys which generate <Esc>a .. <Esc>z
+" fix meta-keys (alt) which generate <Esc>a .. <Esc>z
 let char='a'
 while char <= 'z'
   exec "set <M-".char.">=\e".char
@@ -501,15 +539,27 @@ endw
 
 
 " fzf
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <M-a> :Ag!<space>
+vnoremap <M-a> y:Ag!<space><C-r>"
 " CtrlP is more flexible to manage the buffers
 " nnoremap <M-b> :Buffers<cr>
+nnoremap <M-h> :History<cr>
 nnoremap <M-l> :BLines<cr>
 nnoremap <M-f> :Files<cr>
+" Insert mode completion
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+" imap <c-x><c-k> <plug>(fzf-complete-line-buffer)
 
 
 " Disable ex mode
 " map Q <Nop>
+nnoremap <C-q> <Nop>
+" nnoremap <M-j> <Nop>
+" nnoremap <M-k> <Nop>
+" nnoremap <C-w> <Nop>
 
 
 " Uppercase work just like lowercase
