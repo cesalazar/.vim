@@ -58,17 +58,9 @@ set selection=inclusive
 " set selection=exclusive
 set infercase
 set breakindent
-
-
-" Set options for GUI only
-if has('gui_running')
-  colorscheme elflord
-  setlocal spell spelllang=en_us
-  map <M-v> "*p
-  " no toolbar/menu
-  set guioptions=
-  set guifont=Monospace\ 14
-endif
+set linebreak
+" hide the mode because it is displayed in the status bar
+set noshowmode
 
 
 " Airline options
