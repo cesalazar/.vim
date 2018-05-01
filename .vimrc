@@ -123,7 +123,7 @@ vnoremap <silent><M-j> :'<,'>TCommentAs jsx<cr>
 vnoremap <leader>y "+y
 nnoremap <silent>\ :w<cr>
 " Format lines longer than 78 cols
-vnoremap Q gq<cr>
+nnoremap Q gqEj
 " While on insert, move caret to:
 " end of line
 inoremap <silent><C-e> <C-o>$
@@ -588,7 +588,7 @@ command! JrnlSettings call JrnlSettings()
 
 " Disable ex mode
 " map Q <Nop>
-nnoremap <C-q> <Nop>
+" nnoremap <C-q> <Nop>
 " nnoremap <M-j> <Nop>
 " nnoremap <M-k> <Nop>
 " nnoremap <C-w> <Nop>
