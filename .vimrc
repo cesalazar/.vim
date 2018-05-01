@@ -597,6 +597,8 @@ command! JrnlSettings call JrnlSettings()
 " Uppercase work just like lowercase
 cnoreabbrev W w
 cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev QA qa
 cnoreabbrev X x
 
 
