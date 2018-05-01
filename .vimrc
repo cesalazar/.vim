@@ -135,6 +135,11 @@ inoremap <silent><C-d> <C-o>F
 nnoremap g= YpVr=j
 " Cut, paste and indent in HTML
 inoremap <M-j> <Esc>jddkkp==
+" Move on insert mode
+inoremap <M-h> <Left>
+inoremap <M-b> <C-o>b
+inoremap <M-l> <Right>
+inoremap <M-n> <C-o>w
 
 
 " Automatically jump to the end of the text copied/pasted
