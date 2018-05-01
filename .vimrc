@@ -155,11 +155,11 @@ nnoremap <leader>gv `[v`]
 
 " Copy paths to clipboard
 if executable("xsel")
-    let copiedToClipboard = "Path copied to clipboard"
-    nnoremap <leader>cf :silent !echo %:p:h \| xsel -ib<cr>:redraw!<cr>
-                \:echom copiedToClipboard<cr>
-    nnoremap <leader>cp :silent !echo %:p \| xsel -ib<cr>:redraw!<cr>
-                \:echom copiedToClipboard<cr>
+    let copiedToClipboard = "path copied to clipboard"
+    nnoremap <leader>cp :silent !echo %:p:h \| xsel -ib<cr>:redraw!<cr>
+                \:echo "Directory" copiedToClipboard<cr>
+    nnoremap <leader>cf :silent !echo %:p \| xsel -ib<cr>:redraw!<cr>
+                \:echo "File" copiedToClipboard<cr>
 endif
 
 
