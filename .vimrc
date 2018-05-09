@@ -17,7 +17,7 @@ hi DiffDelete    ctermfg=15      ctermbg=52
 hi Folded        ctermfg=162     ctermbg=None  cterm=Bold
 hi FoldColumn    ctermfg=162     ctermbg=None  cterm=Bold
 hi VertSplit     ctermfg=238     ctermbg=None  cterm=None
-hi ColorColumn   ctermfg=190     ctermbg=492   cterm=None
+hi ColorColumn   ctermfg=190     ctermbg=235   cterm=None
 hi Search                        ctermbg=88    cterm=Reverse
 hi StatusLine    ctermfg=190     ctermbg=None
 hi StatusLineNC  ctermfg=190     ctermbg=None
