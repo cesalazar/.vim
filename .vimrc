@@ -117,7 +117,7 @@ nnoremap <leader>bd :.,$-bdelete<cr>
 nnoremap <leader>cd :cd %:p:h<cr>
 nnoremap <leader>Z vipzf
 " highlight last inserted text
-nnoremap gV `[v`]`  
+nnoremap gV `[v`]
 nnoremap <M-e> :ALEToggle<cr>
 vnoremap <silent><M-j> :'<,'>TCommentAs jsx<cr>
 vnoremap <leader>y "+y
