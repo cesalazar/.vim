@@ -61,6 +61,8 @@ set breakindent
 set linebreak
 " hide the mode because it is displayed in the status bar
 set noshowmode
+"Don't bother highlighting anything over 200 chars
+set synmaxcol=200
 
 
 " Airline options
