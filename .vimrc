@@ -8,7 +8,6 @@ filetype plugin indent on
 
 " Colors
 hi Visual        ctermfg=None    ctermbg=None  cterm=Bold,Underline
-hi MatchParen    ctermfg=White   ctermbg=Blue  cterm=Bold
 hi Noise         ctermfg=Yellow
 hi DiffAdd                       ctermbg=273
 hi DiffChange                    ctermbg=52    cterm=None
@@ -21,8 +20,10 @@ hi ColorColumn   ctermfg=190     ctermbg=235   cterm=None
 hi Search                        ctermbg=88    cterm=Reverse
 hi StatusLine    ctermfg=190     ctermbg=None
 hi StatusLineNC  ctermfg=190     ctermbg=None
-hi MatchParen    ctermfg=190     ctermbg=0     cterm=Bold
+hi MatchParen    ctermfg=43      ctermbg=16    cterm=Bold
 hi SpellBad      ctermfg=198     ctermbg=0     cterm=Bold
+hi LineNr        ctermfg=237     ctermbg=None  cterm=None
+hi CursorLineNr  ctermfg=43      ctermbg=None  cterm=None
 hi CursorLine    ctermfg=None    ctermbg=235   cterm=None
 hi CursorColumn  ctermfg=None    ctermbg=235   cterm=None
 
@@ -59,9 +60,10 @@ set selection=inclusive
 set infercase
 set breakindent
 set linebreak
+set cursorline
 " hide the mode because it is displayed in the status bar
 set noshowmode
-"Don't bother highlighting anything over 200 chars
+" don't bother highlighting anything over 200 chars
 set synmaxcol=200
 
 
