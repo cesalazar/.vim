@@ -126,7 +126,6 @@ nnoremap <M-o> :bnext<cr>
 " highlight last inserted text
 nnoremap gV `[v`]
 nnoremap <M-e> :ALEToggle<cr>
-vnoremap <silent><M-j> :'<,'>TCommentAs jsx<cr>
 vnoremap <leader>y "+y
 nnoremap <silent>\ :w<cr>
 " Format lines longer than 78 cols
@@ -140,8 +139,6 @@ inoremap <silent><C-f> <C-o>f
 inoremap <silent><C-d> <C-o>F
 " Underline a line with '='
 nnoremap g= YpVr=j
-" Cut, paste and indent in HTML
-inoremap <M-j> <Esc>jddkkp==
 " Move on insert mode
 inoremap <M-h> <Left>
 inoremap <M-b> <C-o>b
@@ -168,17 +165,6 @@ if executable("xsel")
     nnoremap <leader>cf :silent !echo %:p \| xsel -ib<cr>:redraw!<cr>
                 \:echo "File" copiedToClipboard<cr>
 endif
-
-
-" Arpeggio
-" jk = <Esc>
-call arpeggio#map('i', '', 0, 'jk', '<Esc>')
-" kl = <C-o>$
-call arpeggio#map('i', '', 0, 'kl', '<C-o>$')
-" kl = <C-o>B
-call arpeggio#map('i', '', 0, 'hj', '<C-o>B')
-" nnoremap gb :CtrlPBuffer<CR>
-call arpeggio#map('n', '', 0, 'gb', ':CtrlPBuffer<CR>')
 
 
 " Open help in new tab
@@ -553,8 +539,6 @@ endw
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <M-a> :Ag!<space>
 vnoremap <M-a> y:Ag!<space><C-r>"
-" CtrlP is more flexible to manage the buffers
-" nnoremap <M-b> :Buffers<cr>
 nnoremap <M-h> :History<cr>
 nnoremap <M-l> :BLines<cr>
 nnoremap <M-f> :Files<cr>
@@ -562,7 +546,6 @@ nnoremap <M-f> :Files<cr>
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-" imap <c-x><c-k> <plug>(fzf-complete-line-buffer)
 
 
 " Goyo (jrnl)
