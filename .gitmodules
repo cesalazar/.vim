@@ -142,3 +142,6 @@
 [submodule "bundle/goyo.vim"]
 	path = bundle/goyo.vim
 	url = https://github.com/junegunn/goyo.vim
+[submodule "bundle/vim-stylus"]
+	path = bundle/vim-stylus
+	url = https://github.com/wavded/vim-stylus
