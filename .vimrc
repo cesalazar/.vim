@@ -120,6 +120,9 @@ nnoremap <leader>cc :set textwidth=78 colorcolumn=+1,+2<cr>
 nnoremap <leader>bd :.,$-bdelete<cr>
 nnoremap <leader>cd :cd %:p:h<cr>
 nnoremap <leader>Z vipzf
+" Switch buffers
+nnoremap <M-i> :bprev<cr>
+nnoremap <M-o> :bnext<cr>
 " highlight last inserted text
 nnoremap gV `[v`]
 nnoremap <M-e> :ALEToggle<cr>
