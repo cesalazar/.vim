@@ -479,6 +479,10 @@ autocmd FileType php setlocal shiftwidth=4
 autocmd BufRead,BufNewFile *.blade.php setlocal shiftwidth=2 nosmartindent nobreakindent
 
 
+" Git commit message
+autocmd BufRead COMMIT_EDITMSG setlocal spell textwidth=70 colorcolumn=+1,+2
+
+
 " UtilSnips
 let g:ultisnips_javascript = {
       \ 'keyword-spacing': 'always',
