@@ -144,6 +144,8 @@ inoremap <M-h> <Left>
 inoremap <M-b> <C-o>b
 inoremap <M-l> <Right>
 inoremap <M-n> <C-o>w
+" Fold a code block
+noremap <leader>[ $zf%
 
 
 " Automatically jump to the end of the text copied/pasted
