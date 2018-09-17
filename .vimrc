@@ -128,7 +128,7 @@ nnoremap gV `[v`]
 nnoremap <M-e> :ALEToggle<cr>
 vnoremap <leader>y "+y
 nnoremap <silent>\ :w<cr>
-" Format lines longer than 78 cols
+" Format lines to fit textwidth
 nnoremap Q gqEj
 " While on insert, move caret to:
 " end of line
@@ -342,7 +342,7 @@ if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag --nocolor --hidden -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -540,7 +540,7 @@ endw
 
 
 " fzf
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --nocolor --hidden --ignore .git -g ""'
 nnoremap <M-a> :Ag!<space>
 vnoremap <M-a> y:Ag!<space><C-r>"
 nnoremap <M-h> :History<cr>
