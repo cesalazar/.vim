@@ -388,6 +388,9 @@ let g:ale_linters = {
     \   'php': [
     \       'phpcs',
     \   ],
+    \   'solidity': [
+    \       'solhint',
+    \   ],
     \}
 
 
