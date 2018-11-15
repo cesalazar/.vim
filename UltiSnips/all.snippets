@@ -5,8 +5,19 @@ $3
 $4endsnippet
 endsnippet
 
+
 snippet uuid "UUID"
 `!p import uuid
 if not snip.c:
   snip.rv = uuid.uuid4().hex`
+endsnippet
+
+
+snippet ahref "a href"
+<a href="${1:http${2:s}://}$3" ${4:id="${5}"} ${6:class="${7}"}>${8:${VISUAL}}</a>$0
+endsnippet
+
+
+snippet ablank "a href target _blank"
+<a href="${1:http${2:s}://}$3" target="_blank" rel="noopener noreferrer">${4:${VISUAL}}</a>$0
 endsnippet

@@ -55,17 +55,17 @@ endsnippet
 
 
 snippet func "function ()"
-function $1($2) {
+function $1 ($2) {
   $0
 }
 endsnippet
 
 
 snippet class "class"
-class $1 {
-  constructor($2){
+class $1 ${2:extends $3} {
+  ${4:constructor () \{
     $0
-  }
+  \}}
 }
 endsnippet
 
@@ -77,14 +77,13 @@ endsnippet
 
 snippet rco "react component"
 const $1 = (${2:props}) => {
-  ${3:state = ''}
-
-  render(){
-    return(
+  ${3:state = \{$4\}
+ }
+  render () {
+    return (
       $0
     )
   }
-
 }
 endsnippet
 
