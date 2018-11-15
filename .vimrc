@@ -48,6 +48,7 @@ set splitbelow
 set splitright
 set wildmenu
 set wildmode=list:longest,full
+set completeopt+=longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.rar
 set scrolloff=7
 set updatetime=250
@@ -64,7 +65,7 @@ set cursorline
 " hide the mode because it is displayed in the status bar
 set noshowmode
 " don't bother highlighting anything over 200 chars
-set synmaxcol=200
+" set synmaxcol=200
 
 
 " Airline options
@@ -280,6 +281,32 @@ augroup TabClosed
 augroup END
 
 
+" Fix punctuation and whitespaces
+augroup FixContent
+  function! FixPunctuation()
+    " Remove whitespaces after opening symbol
+    %s~\(["|“|(|\[]\)\s\+~\1~ge
+    " Place closing symbol before the colon and stripe whitespaces
+    %s~\([\.|;|,]\)\(\s\+\)\?\(["|”|)|\]]\)~\3\1~ge
+    " Add a space after punctuation followed by opening symbol
+    %s~\([\.|;|,]\)\(["|“|(|\[]\)~\1 \2~ge
+    " Add a space after puntuation followed by a character or a number
+    %s~\([\.|;|,|!|?]\)\([a-z|A-Z|0-9]\)~\1 \2~ge
+  endfunction
+
+  function! FixSpaces()
+    " Remove multiple spaces between words
+    %s~\s\+~ ~ge
+    " Remove spaces at the end of a line
+    %s~\s\+$~~ge
+  endfunction
+
+  command! FixPunctuation call FixPunctuation()
+  command! FixSpaces call FixSpaces()
+  command! FixContent call FixPunctuation() | call FixSpaces()
+augroup END
+
+
 " indentLine
 let g:indentLine_char = '┆'
 let g:indentLine_color_term = 236
@@ -393,6 +420,9 @@ let g:ale_linters = {
     \   'solidity': [
     \       'solhint',
     \   ],
+    \   'sh': [
+    \       'shellcheck',
+    \   ],
     \}
 
 
@@ -482,6 +512,12 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | let g:nerdtree_tabs_o
 " Blade and PHP
 autocmd FileType php setlocal shiftwidth=4
 autocmd BufRead,BufNewFile *.blade.php setlocal shiftwidth=2 nosmartindent nobreakindent
+
+
+" SuperTab
+let g:SuperTabLongestHighlight=1
+let g:SuperTabLongestEnhanced=1
+let g:SuperTabCompleteCase='match'
 
 
 " Git commit message
