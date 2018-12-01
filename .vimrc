@@ -471,9 +471,10 @@ map zs/ <Plug>(incsearch-fuzzy-stay)
 
 
 " WebDevIcons
+let g:webdevicons_enable_nerdtree=1
 let g:DevIconsEnableFoldersOpenClose = 0
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 let g:DevIconsEnableFolderPatternMatching = 1
