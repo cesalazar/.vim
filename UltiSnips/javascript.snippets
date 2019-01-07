@@ -63,7 +63,7 @@ endsnippet
 
 snippet class "class"
 class $1 ${2:extends $3} {
-  ${4:constructor () \{
+  ${4:constructor (${5}) \{
     $0
   \}}
 }
@@ -108,4 +108,24 @@ endsnippet
 
 snippet +++ "concat variable"
 ' + ${0} + '
+endsnippet
+
+
+snippet tca "try catch"
+try {
+  ${0}
+} catch (err) {
+  ${2:throw err}
+}
+endsnippet
+
+
+snippet atca "async try catch"
+async (${1}) => {
+  try {
+    ${0}
+  } catch (err) {
+    ${2:throw err}
+  }
+}
 endsnippet
