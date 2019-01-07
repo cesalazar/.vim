@@ -147,6 +147,7 @@ inoremap <M-l> <Right>
 inoremap <M-n> <C-o>w
 " Fold a code block
 noremap <leader>[ $zf%
+noremap <M-g> :GitGutterToggle<cr>
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -388,6 +389,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_javascript_standard_options = '--parser babel-eslint'
 
 let g:ale_fixers = {
     \   'javascript': [
@@ -594,10 +596,20 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 
+" Gutentags
+let g:gutentags_ctags_exclude = ['dist/']
+let g:gutentags_file_list_command = {
+      \   'markers': {
+      \     '.git': 'git ls-files',
+      \   },
+      \ }
+
+
 " Goyo (jrnl)
 function! s:goyo_enter()
   let b:quitting = 0
   let b:quitting_bang = 0
+  set spell
   autocmd QuitPre <buffer> let b:quitting = 1
   cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
