@@ -102,8 +102,8 @@ nnoremap <leader>Y :YRShow<cr>
 nnoremap <M-y> :YRShow<cr>/
 nnoremap <leader>P :set filetype=
 vnoremap <leader>b :Tabularize //l0<left><left><left>
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-vnoremap <leader><C-r> "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
+vnoremap <C-r> "hy:%s~<C-r>h~~gc<left><left><left>
+vnoremap <leader><C-r> "hy:%s~<C-r>h~<C-r>h~gc<left><left><left>
 nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>GC :Gcommit<cr>
@@ -279,6 +279,22 @@ augroup TabClosed
                 \       |   tabprevious
                 \       |endif
                 \       |let s:prevtabnum=tabpagenr('$')
+augroup END
+
+
+" Convert Markdown link to HTML, and viceversa
+augroup ConvertLink
+  command! -range MDLinkToHTML
+      \ <line1>,<line2>s~\[\(.\{-}\)\](\(.\{-}\))~<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>~ge
+
+  command! -range HTMLLinkToMD
+      \ <line1>,<line2>s~<a.\{-}href="\(https\?://.\{-}\)".\{-}>\(.\{-}\)</a>~\[\2\](\1\)~ge
+augroup END
+
+
+" Close all buffers except current
+augroup CloseOtherBuffers
+  command! BufOnly silent! execute "%bd|e#|bd#"
 augroup END
 
 
