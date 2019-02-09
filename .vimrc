@@ -138,6 +138,8 @@ inoremap <silent><C-e> <C-o>$
 inoremap <silent><C-f> <C-o>f
 " find character backward
 inoremap <silent><C-d> <C-o>F
+" repeat find character
+inoremap <silent><C-g> <C-o>;
 " Underline a line with '='
 nnoremap g= YpVr=j
 " Move on insert mode
