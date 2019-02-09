@@ -148,6 +148,9 @@ inoremap <M-n> <C-o>w
 " Fold a code block
 noremap <leader>[ $zf%
 noremap <M-g> :GitGutterToggle<cr>
+" Delete a line without adding it to the yanked stack
+nnoremap <silent> <leader>d "_d
+vnoremap <silent> <leader>d "_d
 
 
 " Automatically jump to the end of the text copied/pasted
