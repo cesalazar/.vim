@@ -115,7 +115,7 @@ nnoremap <leader>: :Ack!
 nnoremap <leader>; :AckWindow 
 nnoremap <leader>r :CtrlPMRU<cr>
 nnoremap <M-r> :CtrlPMRU<cr>
-nnoremap <M-b> :CtrlPBuffer<CR>
+" nnoremap <M-b> :CtrlPBuffer<CR>
 nnoremap <leader>CC :set textwidth=0 colorcolumn=<cr>
 nnoremap <leader>cc :set textwidth=78 colorcolumn=+1,+2<cr>
 nnoremap <leader>bd :.,$-bdelete<cr>
@@ -548,7 +548,8 @@ let g:SuperTabCompleteCase='match'
 autocmd BufRead COMMIT_EDITMSG setlocal spell textwidth=70 colorcolumn=+1,+2
 
 
-" UtilSnips
+" UltiSnips
+let g:UltiSnipsListSnippets = '<c-l>'
 let g:ultisnips_javascript = {
       \ 'keyword-spacing': 'always',
       \ 'semi': 'never',
@@ -611,6 +612,7 @@ vnoremap <M-a> y:Ag!<space><C-r>"
 nnoremap <M-h> :History<cr>
 nnoremap <M-l> :BLines<cr>
 nnoremap <M-f> :Files<cr>
+nnoremap <M-b> :Buffers<cr>
 " Insert mode completion
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
