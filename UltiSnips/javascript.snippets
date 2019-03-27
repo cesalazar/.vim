@@ -89,20 +89,25 @@ endsnippet
 
 
 snippet rcl "react class"
-export default class ${1:${VISUAL}} extends Component {
-  constructor (${2:props}) {
-    super()
-    ${3:this.state = \{\}}
-  }
+class ${1:${VISUAL}} extends Component {
+  ${2:state = \{
+	  ${3}
+  \}
 
-  render () {
+  }${4:componentDidMount () \{
+	  ${5}
+  \}
+
+  }render () {
     return (
-      <${4:div}>
+      <${6:div}>
         $0
-      </$4>
+      </$6>
     )
   }
-}
+}${7:
+export \{ $1 \}}${8:
+export default $1}
 endsnippet
 
 
