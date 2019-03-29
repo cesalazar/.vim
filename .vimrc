@@ -271,6 +271,12 @@ nmap <leader>> <Plug>moveTabRight
 
 " Return to last active buffer
 nnoremap <silent>, <C-^>
+" Restore the cursor position when switching buffers
+aug CursorPosition
+  au!
+  au BufLeave * let b:winview = winsaveview()
+  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+aug END
 
 
 " Return to last active tab
