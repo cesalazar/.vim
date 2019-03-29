@@ -176,9 +176,10 @@ if executable("xsel")
 endif
 
 
-" Open help in new tab
-cabbrev h tab h
-cabbrev help tab help
+" Open help in new listed buffer
+cabbrev h H
+cabbrev help H
+command -nargs=? H help <args> | :only | :set buflisted
 
 
 " Beautify xml and json (not too happy with the current keys)
