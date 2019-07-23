@@ -85,8 +85,7 @@ let g:multi_cursor_exit_from_insert_mode = 1
 
 " Mappings
 let mapleader = "-"
-" nnoremap <leader>n :NERDTreeToggle<cr>
-nnoremap <M-n> :NERDTreeToggle<cr>
+nnoremap <M-n> :NERDTreeTabsToggle<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
 nnoremap <leader><esc> :q!<cr>
@@ -129,6 +128,7 @@ nnoremap <M-o> :bnext<cr>
 " highlight last inserted text
 nnoremap gV `[v`]
 nnoremap <M-e> :ALEToggle<cr>
+nnoremap <M-x> :ALENextWrap<cr>
 vnoremap <leader>y "+y
 nnoremap <silent>\ :w<cr>
 " Format lines to fit textwidth
@@ -423,7 +423,7 @@ let g:ale_javascript_standard_options = '--parser babel-eslint'
 
 let g:ale_fixers = {
     \   'javascript': [
-    \       'standard',
+    \       'eslint',
     \   ],
     \   'scss': [
     \       'stylelint --syntax scss',
@@ -438,7 +438,7 @@ let g:ale_fixers = {
 
 let g:ale_linters = {
     \   'javascript': [
-    \       'standard',
+    \       'eslint',
     \   ],
     \   'scss': [
     \       'stylelint --syntax scss',
