@@ -26,6 +26,8 @@ hi LineNr        ctermfg=237     ctermbg=None  cterm=None
 hi CursorLineNr  ctermfg=43      ctermbg=None  cterm=None
 hi CursorLine    ctermfg=None    ctermbg=235   cterm=None
 hi CursorColumn  ctermfg=None    ctermbg=235   cterm=None
+" Forces same color of the text for the NERDTree folder devicon
+hi! link NERDTreeFlags NERDTreeDir
 
 
 " Config
@@ -504,14 +506,11 @@ map zs/ <Plug>(incsearch-fuzzy-stay)
 let g:webdevicons_enable_nerdtree=1
 let g:DevIconsEnableFoldersOpenClose = 0
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 let g:DevIconsEnableFolderPatternMatching = 1
-
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:DevIconsDefaultFolderOpenSymbol = ''
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 
 " NERDTree
@@ -521,8 +520,8 @@ let g:NERDTreeQuitOnOpen = 0
 let NERDTreeShowBookmarks = 0
 let NERDTreeCreatePrefix = 'silent keepalt keepjumps'
 let NERDTreeBookmarksFile = $HOME.'/.vim/swapfiles/.NERDTreeBookmarks'
-let g:NERDTreeDirArrowExpandable = ''   " default: '▸'
-let g:NERDTreeDirArrowCollapsible = ''  " default: '▾'
+let g:NERDTreeDirArrowExpandable = "\u00a0"   " '' '▸'
+let g:NERDTreeDirArrowCollapsible = "\u00a0"  " '' '▾'
 let NERDTreeIgnore=['node_modules$[[dir]]']
 
 
