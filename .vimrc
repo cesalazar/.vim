@@ -61,14 +61,15 @@ set selection=inclusive
 set infercase
 set breakindent
 set linebreak
-set cursorline
+set nocursorline
 " hide the mode because it is displayed in the status bar
 set noshowmode
 " don't bother highlighting anything over 200 chars
-" set synmaxcol=200
+set synmaxcol=200
 
 
 " Airline options
+let g:airline_section_b=''
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -84,7 +85,7 @@ let g:multi_cursor_exit_from_insert_mode = 1
 " Mappings
 let mapleader = "-"
 " nnoremap <leader>n :NERDTreeToggle<cr>
-nnoremap <M-n> :NERDTreeToggle<cr>
+nnoremap <M-n> :NERDTreeTabsToggle<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
 nnoremap <leader><esc> :q!<cr>
@@ -127,6 +128,7 @@ nnoremap <M-o> :bnext<cr>
 " highlight last inserted text
 nnoremap gV `[v`]
 nnoremap <M-e> :ALEToggle<cr>
+nnoremap <M-x> :ALENextWrap<cr>
 vnoremap <leader>y "+y
 nnoremap <silent>\ :w<cr>
 " Format lines to fit textwidth
@@ -185,6 +187,7 @@ command -nargs=? H help <args> | :only | :set buflisted
 " Beautify xml and json (not too happy with the current keys)
 map <F9> :% !python -m json.tool <cr>
 map <F10> :% !xmllint --format - <cr>
+map <F11> :% !prettier --stdin --stdin-filepath % <cr>
 
 
 " Treat long lines as break lines (useful when moving around in them)
@@ -369,7 +372,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_arg_map = 1
 let g:ctrlp_open_multiple_files = 'i'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
 let g:ctrlp_prompt_mappings = {
     \ 'PrtDeleteEnt()':       ['<C-x>'],
@@ -421,7 +424,7 @@ let g:ale_javascript_standard_options = '--parser babel-eslint'
 
 let g:ale_fixers = {
     \   'javascript': [
-    \       'standard',
+    \       'eslint',
     \   ],
     \   'scss': [
     \       'stylelint --syntax scss',
@@ -436,7 +439,7 @@ let g:ale_fixers = {
 
 let g:ale_linters = {
     \   'javascript': [
-    \       'standard',
+    \       'eslint',
     \   ],
     \   'scss': [
     \       'stylelint --syntax scss',
@@ -523,7 +526,7 @@ let NERDTreeCreatePrefix = 'silent keepalt keepjumps'
 let NERDTreeBookmarksFile = $HOME.'/.vim/swapfiles/.NERDTreeBookmarks'
 let g:NERDTreeDirArrowExpandable = ''   " default: '▸'
 let g:NERDTreeDirArrowCollapsible = ''  " default: '▾'
-let NERDTreeIgnore=['node_modules$[[dir]]']
+let NERDTreeIgnore=['node_modules$[[dir]]', '\.pyc']
 
 
 " NERDTree-Tabs
