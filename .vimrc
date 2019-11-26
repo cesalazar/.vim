@@ -88,13 +88,12 @@ let mapleader = "-"
 nnoremap <M-n> :NERDTreeTabsToggle<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
-nnoremap <leader><esc> :q!<cr>
+nnoremap <leader><esc><esc> :q!<cr>
 nnoremap <leader>m :set mouse=a<cr>:set mouse?<cr>
 nnoremap <leader>M :set mouse=""<cr>:set mouse?<cr>
 nnoremap <leader>vs :vsplit<cr>
 nnoremap <leader>hs :split<cr>
 nnoremap <leader>o :only<cr>
-nnoremap <leader><esc> :q!<cr>
 nnoremap <leader>`` :bd!<cr>
 nnoremap <leader>n :enew<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
