@@ -154,6 +154,8 @@ noremap <M-g> :GitGutterToggle<cr>
 " Delete a line without adding it to the yanked stack
 nnoremap <silent> <leader>d "_d
 vnoremap <silent> <leader>d "_d
+nnoremap <M-s> :set spell!<cr>
+vnoremap <M-s> :'<,'>sort<cr>
 
 
 " Automatically jump to the end of the text copied/pasted
