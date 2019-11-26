@@ -148,3 +148,9 @@
 [submodule "bundle/vim-graphql"]
 	path = bundle/vim-graphql
 	url = https://github.com/jparise/vim-graphql.git
+[submodule "bundle/nginx-vim"]
+	path = bundle/nginx-vim
+	url = git@github.com:chr4/nginx.vim.git
+[submodule "bundle/vim-twig"]
+	path = bundle/vim-twig
+	url = git@github.com:lumiliet/vim-twig.git
