@@ -154,3 +154,9 @@
 [submodule "bundle/vim-twig"]
 	path = bundle/vim-twig
 	url = git@github.com:lumiliet/vim-twig.git
+[submodule "bundle/Jenkinsfile-vim-syntax"]
+	path = bundle/Jenkinsfile-vim-syntax
+	url = git@github.com:martinda/Jenkinsfile-vim-syntax.git
+[submodule "bundle/vim-obsession"]
+	path = bundle/vim-obsession
+	url = git@github.com:tpope/vim-obsession.git
