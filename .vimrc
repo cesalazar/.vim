@@ -70,6 +70,7 @@ set nocursorline
 set noshowmode
 " don't bother highlighting anything over 200 chars
 set synmaxcol=200
+set diffopt=internal,filler,vertical
 
 
 " Airline options
