@@ -1,4 +1,8 @@
-﻿execute pathogen#infect()
+﻿" Workaround to "fix" the problem with UltiSnips not finding python
+if has('python3')
+endif
+
+execute pathogen#infect()
 " syntax on
 if !exists('g:syntax_on')
     syntax enable
