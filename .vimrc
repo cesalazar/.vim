@@ -185,9 +185,11 @@ endif
 
 
 " Open help in new listed buffer
-cabbrev h H
-cabbrev help H
-command -nargs=? H help <args> | :only | :set buflisted
+augroup HelpBuf
+  cabbrev h H
+  cabbrev help H
+  command -nargs=? H help <args> | :only | :set buflisted
+augroup END
 
 
 " Beautify xml and json (not too happy with the current keys)
