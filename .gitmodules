@@ -100,18 +100,12 @@
 [submodule "bundle/taglist.vim"]
 	path = bundle/taglist.vim
 	url = https://github.com/vim-scripts/taglist.vim
-[submodule "bundle/colorv.vim"]
-	path = bundle/colorv.vim
-	url = https://github.com/Rykka/colorv.vim
 [submodule "bundle/vim-devicons"]
 	path = bundle/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons
 [submodule "bundle/vim-solidity"]
 	path = bundle/vim-solidity
 	url = https://github.com/tomlion/vim-solidity.git
-[submodule "bundle/vala.vim"]
-	path = bundle/vala.vim
-	url = https://github.com/arrufat/vala.vim.git
 [submodule "bundle/webapi-vim"]
 	path = bundle/webapi-vim
 	url = https://github.com/mattn/webapi-vim
@@ -145,9 +139,6 @@
 [submodule "bundle/vim-gutentags"]
 	path = bundle/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
-[submodule "bundle/vim-graphql"]
-	path = bundle/vim-graphql
-	url = https://github.com/jparise/vim-graphql.git
 [submodule "bundle/nginx-vim"]
 	path = bundle/nginx-vim
 	url = git@github.com:chr4/nginx.vim.git
