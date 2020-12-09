@@ -15,7 +15,7 @@ hi Visual        ctermfg=None    ctermbg=None  cterm=Bold,Underline
 hi Noise         ctermfg=Yellow
 hi DiffAdd                       ctermbg=273
 hi DiffChange                    ctermbg=52    cterm=None
-hi DiffText                      ctermbg=162
+hi DiffText      ctermfg=225     ctermbg=162
 hi DiffDelete    ctermfg=15      ctermbg=52
 hi Folded        ctermfg=162     ctermbg=None  cterm=Bold
 hi FoldColumn    ctermfg=162     ctermbg=None  cterm=Bold
@@ -30,6 +30,8 @@ hi LineNr        ctermfg=237     ctermbg=None  cterm=None
 hi CursorLineNr  ctermfg=43      ctermbg=None  cterm=None
 hi CursorLine    ctermfg=None    ctermbg=235   cterm=None
 hi CursorColumn  ctermfg=None    ctermbg=235   cterm=None
+hi NERDTreeOpenable ctermfg=0    ctermbg=None  cterm=None
+hi Pmenu         ctermfg=15      ctermbg=17    cterm=None
 
 
 " Config
@@ -103,7 +105,6 @@ nnoremap <leader>`` :bd!<cr>
 nnoremap <leader>n :enew<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>T :tag 
-nnoremap <leader>Y :YRShow<cr>
 nnoremap <M-y> :YRShow<cr>/
 nnoremap <leader>P :set filetype=
 vnoremap <leader>b :Tabularize //l0<left><left><left>
@@ -161,6 +162,7 @@ nnoremap <silent> <leader>d "_d
 vnoremap <silent> <leader>d "_d
 nnoremap <M-s> :set spell!<cr>
 vnoremap <M-s> :'<,'>sort<cr>
+nnoremap <M-m> :Gblame<cr>
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -172,6 +174,11 @@ nnoremap <silent> p p`]
 nnoremap <silent> P P`]
 " Reselect pasted text
 nnoremap <leader>gv `[v`]
+
+
+" Git blame on a pop-up window
+" https://www.reddit.com/r/vim/comments/i50pce/how_to_show_commit_that_introduced_current_line/
+nmap <silent><Leader>l :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,2,1,2], "pos": "botleft", "wrap": 0, "border": [0,0,0,1] })), "&filetype", "git")<CR>
 
 
 " Copy paths to clipboard
@@ -188,7 +195,7 @@ endif
 augroup HelpBuf
   cabbrev h H
   cabbrev help H
-  command -nargs=? H help <args> | :only | :set buflisted
+  command! -nargs=? H help <args> | :only | :set buflisted
 augroup END
 
 
@@ -235,6 +242,10 @@ nmap <leader><S-j> <Plug>ReduceSplitHeight
 nmap <Plug>IncreaseSplitHeight 5<C-w>+
     \:call repeat#set("\<Plug>IncreaseSplitHeight")<CR>
 nmap <leader><S-k> <Plug>IncreaseSplitHeight
+
+
+" editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 
 " MultipleSearch config
@@ -424,6 +435,7 @@ let g:jsx_ext_required = 0
 
 " ALE
 let g:ale_enabled = 0
+let g:ale_fix_on_save = 0
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -435,13 +447,16 @@ let g:ale_fixers = {
     \       'eslint',
     \   ],
     \   'scss': [
-    \       'stylelint --syntax scss',
+    \       'stylelint',
     \   ],
     \   'css': [
     \       'stylelint',
     \   ],
     \   'php': [
     \       'phpcbf',
+    \   ],
+    \   'python': [
+    \       'black',
     \   ],
     \}
 
@@ -450,13 +465,16 @@ let g:ale_linters = {
     \       'eslint',
     \   ],
     \   'scss': [
-    \       'stylelint --syntax scss',
+    \       'stylelint',
     \   ],
     \   'css': [
     \       'stylelint',
     \   ],
     \   'php': [
     \       'phpcs',
+    \   ],
+    \   'python': [
+    \       'black',
     \   ],
     \   'solidity': [
     \       'solhint',
@@ -512,17 +530,16 @@ map zs/ <Plug>(incsearch-fuzzy-stay)
 
 
 " WebDevIcons
-let g:webdevicons_enable_nerdtree=1
-let g:DevIconsEnableFoldersOpenClose = 0
+let g:webdevicons_enable_nerdtree = 1
+let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+" let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-let g:DevIconsEnableFolderPatternMatching = 1
-
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:DevIconsDefaultFolderOpenSymbol = ''
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+" let g:DevIconsEnableFolderPatternMatching = 1
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 0
+" let g:DevIconsDefaultFolderOpenSymbol = ''
+" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
 
 
 " NERDTree
@@ -532,8 +549,10 @@ let g:NERDTreeQuitOnOpen = 0
 let NERDTreeShowBookmarks = 0
 let NERDTreeCreatePrefix = 'silent keepalt keepjumps'
 let NERDTreeBookmarksFile = $HOME.'/.vim/swapfiles/.NERDTreeBookmarks'
-let g:NERDTreeDirArrowExpandable = ''   " default: '▸'
-let g:NERDTreeDirArrowCollapsible = ''  " default: '▾'
+" ''   " default: '▸'
+let g:NERDTreeDirArrowExpandable = '.'
+" ''  " default: '▾'
+let g:NERDTreeDirArrowCollapsible = '.'
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.pyc']
 
 
@@ -547,13 +566,27 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Open NERDTree only if no file was specified
 " let g:nerdtree_tabs_open_on_console_startup = 0
-autocmd StdinReadPre * let s:std_in = 1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | let g:nerdtree_tabs_open_on_console_startup = 1 | endif 
+"
+" 2020-07-28 Disabled to evaluate if I should get rid of this:
+" autocmd StdinReadPre * let s:std_in = 1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | let g:nerdtree_tabs_open_on_console_startup = 1 | endif 
 
 
-" Blade and PHP
-autocmd FileType php setlocal shiftwidth=4
-autocmd BufRead,BufNewFile *.blade.php setlocal shiftwidth=2 nosmartindent nobreakindent
+" PHP, Blade, Twig
+" The JS syntax highlighting requires: https://github.com/vim-scripts/SyntaxRange
+aug Twig
+  au!
+  autocmd FileType,BufRead,BufNewFile *.twig setlocal tabstop=4 shiftwidth=4 nosmartindent nobreakindent noexpandtab
+        \ | set filetype=html.twig.javascript
+        \ | call SyntaxRange#Include('{% js %}', '{% endjs %}', 'javascript', 'NonText')
+aug END
+
+
+" pcss
+aug CSS
+  au!
+  autocmd FileType,BufRead,BufNewFile *.pcss setlocal filetype=css.scss
+aug END
 
 
 " SuperTab
@@ -563,7 +596,9 @@ let g:SuperTabCompleteCase='match'
 
 
 " Git commit message
-autocmd BufRead COMMIT_EDITMSG setlocal spell textwidth=70 colorcolumn=+1,+2
+aug Commit
+  autocmd BufRead COMMIT_EDITMSG setlocal spell textwidth=70 colorcolumn=+1,+2
+aug END
 
 
 " UltiSnips
