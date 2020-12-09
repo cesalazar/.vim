@@ -115,9 +115,6 @@
 [submodule "bundle/UltiSnips"]
 	path = bundle/UltiSnips
 	url = https://github.com/sirver/UltiSnips
-[submodule "bundle/vim-jsx"]
-	path = bundle/vim-jsx
-	url = https://github.com/mxw/vim-jsx.git
 [submodule "bundle/ale"]
 	path = bundle/ale
 	url = https://github.com/w0rp/ale.git
@@ -141,16 +138,25 @@
 	url = https://github.com/ludovicchabant/vim-gutentags.git
 [submodule "bundle/nginx-vim"]
 	path = bundle/nginx-vim
-	url = git@github.com:chr4/nginx.vim.git
+	url = https://github.com/chr4/nginx.vim.git
 [submodule "bundle/vim-twig"]
 	path = bundle/vim-twig
-	url = git@github.com:lumiliet/vim-twig.git
+	url = https://github.com/lumiliet/vim-twig.git
 [submodule "bundle/Jenkinsfile-vim-syntax"]
 	path = bundle/Jenkinsfile-vim-syntax
-	url = git@github.com:martinda/Jenkinsfile-vim-syntax.git
+	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git
 [submodule "bundle/vim-obsession"]
 	path = bundle/vim-obsession
-	url = git@github.com:tpope/vim-obsession.git
+	url = https://github.com/tpope/vim-obsession.git
 [submodule "bundle/editorconfig-vim"]
 	path = bundle/editorconfig-vim
-	url = git@github.com:editorconfig/editorconfig-vim.git
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "bundle/SyntaxRange"]
+	path = bundle/SyntaxRange
+	url = https://github.com/vim-scripts/SyntaxRange.git
+[submodule "bundle/vim-ingo-library"]
+	path = bundle/vim-ingo-library
+	url = https://github.com/inkarkat/vim-ingo-library
+[submodule "bundle/vim-jsx-pretty"]
+	path = bundle/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty
