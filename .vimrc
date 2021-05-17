@@ -32,12 +32,15 @@ hi CursorLine    ctermfg=None    ctermbg=235   cterm=None
 hi CursorColumn  ctermfg=None    ctermbg=235   cterm=None
 hi NERDTreeOpenable ctermfg=0    ctermbg=None  cterm=None
 hi Pmenu         ctermfg=15      ctermbg=17    cterm=None
+" Overwrite for vim-javascript scheme
+hi! default link jsNull Constant
+hi! default link jsUndefined Constant
 
 
 " Config
 let &showbreak='↪ '
 set encoding=utf-8
-set listchars=eol:¬,tab:▸-,extends:❯,precedes:❮
+set listchars=eol:¬,tab:▸-,extends:❯,precedes:❮,space:·,trail:X,nbsp:!
 set number
 set ignorecase
 set mouse=a
@@ -84,14 +87,14 @@ let g:airline#extensions#tabline#show_close_button = 0
 
 
 " Multiple cursors
-let g:multi_cursor_quit_key = 'q'
+let g:multi_cursor_quit_key = '\'
+let g:multi_cursor_select_all_word_key = ''
 let g:multi_cursor_exit_from_visual_mode = 1
 let g:multi_cursor_exit_from_insert_mode = 1
 
 
 " Mappings
 let mapleader = "-"
-" nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <M-n> :NERDTreeTabsToggle<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
@@ -163,6 +166,7 @@ vnoremap <silent> <leader>d "_d
 nnoremap <M-s> :set spell!<cr>
 vnoremap <M-s> :'<,'>sort<cr>
 nnoremap <M-m> :Gblame<cr>
+nnoremap <silent><Tab> <C-w><C-w>
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -178,7 +182,11 @@ nnoremap <leader>gv `[v`]
 
 " Git blame on a pop-up window
 " https://www.reddit.com/r/vim/comments/i50pce/how_to_show_commit_that_introduced_current_line/
-nmap <silent><Leader>l :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,2,1,2], "pos": "botleft", "wrap": 0, "border": [0,0,0,1] })), "&filetype", "git")<CR>
+nnoremap <silent><Leader>l :call setbufvar(winbufnr(
+        \ popup_atcursor(
+          \ split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"),
+          \ { "padding": [1,2,1,2], "pos": "botleft", "wrap": 0, "border": [0,0,0,1] }
+        \ )), "&filetype", "git" )<CR>
 
 
 " Copy paths to clipboard
@@ -266,8 +274,8 @@ nmap L <Plug>(easymotion-overwin-line)
 
 
 " emmet config
-let g:user_emmet_mode='a'
-let g:use_emmet_complete_tag=1
+let g:user_emmet_mode = 'a'
+let g:use_emmet_complete_tag = 1
 let g:user_emmet_settings = {
               \   'html': {
               \     'empty_element_suffix': ' />',
@@ -440,10 +448,23 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_javascript_standard_options = '--parser babel-eslint'
+let g:ale_javascript_eslint_suppress_missing_config = 0
+" TODO: check ALE/eslint mentally-challenged changes to lint JS
+" let g:ale_javascript_standard_options = '--parser @babel/eslint-parser'
+" let g:ale_javascript_standard_options = '--parser @typescript-eslint/parser'
+" let g:ale_javascript_standard_options = '--parser typescript-eslint-parser'
 
 let g:ale_fixers = {
+    \   'typescrypt': [
+    \       'eslint',
+    \   ],
     \   'javascript': [
+    \       'eslint',
+    \   ],
+    \   'jsx': [
+    \       'eslint',
+    \   ],
+    \   'vue': [
     \       'eslint',
     \   ],
     \   'scss': [
@@ -461,7 +482,16 @@ let g:ale_fixers = {
     \}
 
 let g:ale_linters = {
+    \   'typescrypt': [
+    \       'eslint',
+    \   ],
     \   'javascript': [
+    \       'eslint',
+    \   ],
+    \   'jsx': [
+    \       'eslint',
+    \   ],
+    \   'vue': [
     \       'eslint',
     \   ],
     \   'scss': [
@@ -576,9 +606,18 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 " The JS syntax highlighting requires: https://github.com/vim-scripts/SyntaxRange
 aug Twig
   au!
-  autocmd FileType,BufRead,BufNewFile *.twig setlocal tabstop=4 shiftwidth=4 nosmartindent nobreakindent noexpandtab
+  autocmd FileType,BufRead,BufNewFile *.twig setlocal tabstop=2 shiftwidth=2 nosmartindent nobreakindent noexpandtab
         \ | set filetype=html.twig.javascript
         \ | call SyntaxRange#Include('{% js %}', '{% endjs %}', 'javascript', 'NonText')
+aug END
+
+
+" Styled Components
+" The SASS syntax highlighting requires: https://github.com/vim-scripts/SyntaxRange
+aug StyledComponents
+  au!
+  autocmd! Filetype,BufEnter,BufRead,BufNewFile *.js set filetype=javascript.jsx.scss
+        " \ | call SyntaxRange#IncludeEx('start=".*= styled.*`$" end="^`;\?$"', 'scss')
 aug END
 
 
