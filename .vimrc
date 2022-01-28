@@ -132,7 +132,7 @@ nnoremap <M-i> :call vem_tabline#tabline.select_next_buffer(1)<cr>
 nnoremap <M-o> :call vem_tabline#tabline.select_next_buffer(0)<cr>
 nnoremap <Home> :call vem_tabline#tabline.move_buffer(0)<cr>
 nnoremap <End> :call vem_tabline#tabline.move_buffer(1)<cr>
-" highlight last inserted text
+" Highlight last inserted text
 nnoremap gV `[v`]
 nnoremap <M-e> :ALEToggle<cr>
 nnoremap <M-x> :ALENextWrap<cr>
@@ -163,7 +163,7 @@ noremap <M-g> :GitGutterToggle<cr>
 nnoremap <silent> <leader>d "_d
 vnoremap <silent> <leader>d "_d
 nnoremap <M-s> :set spell!<cr>
-vnoremap <M-s> :'<,'>sort<cr>
+vnoremap <M-s> :sort i<cr>
 nnoremap <M-m> :Gblame<cr>
 " nnoremap <silent><Tab> <C-w><C-w>
 nnoremap <C-i> <C-i>
@@ -176,8 +176,6 @@ xnoremap <silent> p p`]
 xnoremap <silent> P P`]
 nnoremap <silent> p p`]
 nnoremap <silent> P P`]
-" Reselect pasted text
-nnoremap <leader>gv `[v`]
 
 
 " Netrw
@@ -595,9 +593,9 @@ let delimitMate_expand_cr = 2
 
 
 " incsearch (use \v for regex)
-nmap /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+nmap / <Plug>(incsearch-forward)
+nmap ? <Plug>(incsearch-backward)
+nmap g/ <Plug>(incsearch-stay)
 
 
 " incsearch-fuzzy
