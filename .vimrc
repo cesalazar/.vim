@@ -231,20 +231,7 @@ augroup END
 " Beautify xml and json (not too happy with the current keys)
 map <F9> :% !python -m json.tool <cr>
 map <F10> :% !xmllint --format - <cr>
-" map <F11> :ALEFix<cr>
-map <F11> :% !prettier --stdin-filepath % <cr>
-" map <F11> :% !prettier --no-semi --single-quote --trailing-comma es5 --stdin-filepath %<cr>
-
-" augroup Prettier
-"   function! PrettiIt()
-"     let l:cursor_pos = getcurpos()
-"     let l:cursor_line = cursor_pos[1]
-"     let l:cursor_column = cursor_pos[4]
-"     exec "% !prettier --no-semi --single-quote --trailing-comma es5 --stdin-filepath %"
-"     " call cursor(cursor_line, cursor_column)
-"   endfunction
-"   nnoremap <F11> :call PrettiIt()<cr>
-" augroup END
+map <F11> :ALEFix<cr>
 
 
 " Treat long lines as break lines (useful when moving around in them)
@@ -479,85 +466,40 @@ let g:jsx_ext_required = 0
 " ALE
 let g:ale_enabled = 0
 let g:ale_fix_on_save = 0
-" let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_javascript_eslint_suppress_missing_config = 0
 let g:ale_javascript_eslint_suppress_eslintignore = 1
-" TODO: check ALE/eslint mentally-challenged changes to lint JS
-" let g:ale_javascript_standard_options = '--parser @babel/eslint-parser'
-" let g:ale_javascript_standard_options = '--parser @typescript-eslint/parser'
-" let g:ale_javascript_standard_options = '--parser typescript-eslint-parser'
 let g:ale_javascript_prettier_options = '--no-semi --single-quote --trailing-comma es5'
 let g:ale_php_phpcs_executable='./vendor/bin/phpcs'
 let g:ale_php_php_cs_fixer_executable='./vendor/bin/php-cs-fixer'
 
-" This seems unnecessary. See: https://github.com/dense-analysis/ale#5-faq
 let g:ale_fixers = {
-    \   'typescrypt': [
-    \       'eslint',
-    \   ],
-    \   'javascript': [
-    \       'eslint',
-    \       'prettier',
-    \   ],
-    \   'jsx': [
-    \       'eslint',
-    \       'prettier',
-    \   ],
-    \   'vue': [
-    \       'eslint',
-    \   ],
-    \   'scss': [
-    \       'stylelint',
-    \   ],
-    \   'css': [
-    \       'stylelint',
-    \   ],
-    \   'php': [
-    \       'php_cs_fixer',
-    \   ],
-    \   'python': [
-    \       'black',
-    \   ],
-    \   'twig': [
-    \       'prettier',
-    \   ],
-    \}
+  \ 'css': ['stylelint'],
+  \ 'html': ['prettier'],
+  \ 'javascript': ['eslint', 'prettier'],
+  \ 'jsx': ['eslint', 'prettier'],
+  \ 'php': ['prettier', 'php_cs_fixer'],
+  \ 'python': ['black'],
+  \ 'scss': ['stylelint'],
+  \ 'twig': ['prettier'],
+  \ 'typescrypt': ['eslint', 'prettier'],
+  \ 'vue': ['eslint', 'prettier'],
+  \ }
 
 let g:ale_linters = {
-    \   'typescrypt': [
-    \       'eslint',
-    \   ],
-    \   'javascript': [
-    \       'eslint',
-    \   ],
-    \   'jsx': [
-    \       'eslint',
-    \   ],
-    \   'vue': [
-    \       'eslint',
-    \   ],
-    \   'scss': [
-    \       'stylelint',
-    \   ],
-    \   'css': [
-    \       'stylelint',
-    \   ],
-    \   'php': [
-    \       'phpcs',
-    \   ],
-    \   'python': [
-    \       'black',
-    \   ],
-    \   'solidity': [
-    \       'solhint',
-    \   ],
-    \   'sh': [
-    \       'shellcheck',
-    \   ],
-    \}
+  \ 'css': ['stylelint'],
+  \ 'html': ['prettier'],
+  \ 'javascript': ['eslint', 'prettier'],
+  \ 'jsx': ['eslint', 'prettier'],
+  \ 'php': ['php_cs_fixer'],
+  \ 'python': ['black'],
+  \ 'scss': ['stylelint'],
+  \ 'sh': ['shellcheck'],
+  \ 'typescrypt': ['eslint', 'prettier'],
+  \ 'vue': ['eslint', 'prettier'],
+  \ }
 
 
 " Swaps
@@ -671,8 +613,6 @@ aug END
 " Splitjoin
 let g:splitjoin_trailing_comma=1
 let g:splitjoin_html_attributes_hanging=1
- 
- 
 
 
 " pcss
