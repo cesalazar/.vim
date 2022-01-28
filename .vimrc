@@ -92,7 +92,6 @@ let g:multi_cursor_exit_from_insert_mode = 1
 " Mappings
 let mapleader = "-"
 nnoremap <M-n> :NERDTreeTabsToggle<cr>
-" nnoremap <M-n> :silent 14 Lexplore<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
 nnoremap <leader><esc><esc> :q!<cr>
@@ -105,6 +104,7 @@ nnoremap <leader>`` :bdelete!<cr>
 nnoremap <leader>n :enew<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>T :tag 
+nnoremap <leader>t :tabnew<cr>
 nnoremap <M-y> :YRShow<cr>/
 nnoremap <leader>P :set filetype=
 vnoremap <leader>b :Tabularize //l0<left><left><left>
@@ -272,7 +272,7 @@ nmap <leader><S-k> <Plug>IncreaseSplitHeight
 
 
 " editorconfig
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*', '*COMMIT*']
 
 
 " MultipleSearch config
@@ -300,22 +300,6 @@ let g:user_emmet_settings = {
               \     'empty_element_suffix': ' />',
               \   },
               \ }
-
-
-" Tab management
-nmap <leader>t :tabnew<cr>
-nmap <Plug>goToPrevTab :tabprevious<cr>
-    \:call repeat#set("\<Plug>goToPrevTab")<CR>
-nmap <leader>j <Plug>goToPrevTab
-nmap <Plug>goToNextTab :tabnext<cr>
-    \:call repeat#set("\<Plug>goToNextTab")<CR>
-nmap <leader>k <Plug>goToNextTab
-nmap <Plug>moveTabLeft :tabm -1<cr>
-    \:call repeat#set("\<Plug>moveTabLeft")<CR>
-nmap <leader>< <Plug>moveTabLeft
-nmap <Plug>moveTabRight :tabm +1<cr>
-    \:call repeat#set("\<Plug>moveTabRight")<CR>
-nmap <leader>> <Plug>moveTabRight
 
 
 " Return to last active buffer
@@ -400,7 +384,6 @@ nmap <leader>x :Kwbd<CR>
 
 " Move each buffer to its own tab
 nmap <leader>\ :tab sball<cr>:tabonly<cr>
-" nmap <leader>\ :tabnew<cr>:Kwbd<cr>
 
 
 " Automatically source the .vimrc file
@@ -559,9 +542,7 @@ let g:NERDTreeQuitOnOpen = 0
 let NERDTreeShowBookmarks = 0
 let NERDTreeCreatePrefix = 'silent keepalt keepjumps'
 let NERDTreeBookmarksFile = $HOME.'/.vim/swapfiles/.NERDTreeBookmarks'
-" ''   " default: '▸'
 let g:NERDTreeDirArrowExpandable = '.'
-" ''  " default: '▾'
 let g:NERDTreeDirArrowCollapsible = '.'
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.pyc']
 
@@ -587,11 +568,9 @@ aug END
 
 
 " Styled Components
-" The SASS syntax highlighting requires: https://github.com/vim-scripts/SyntaxRange
 aug StyledComponents
   au!
   autocmd! Filetype,BufEnter,BufRead,BufNewFile *.js set filetype=javascript.jsx.scss
-        " \ | call SyntaxRange#IncludeEx('start=".*= styled.*`$" end="^`;\?$"', 'scss')
 aug END
 
 
@@ -633,7 +612,6 @@ let g:ultisnips_javascript = {
 aug AutoViews
   au!
   " Automatically save last view
-  " autocmd BufWrite,QuitPre ?* mkview 0
   autocmd BufWrite ?* mkview 0
   " Restore the view automatically
   autocmd BufRead ?* silent loadview 0
