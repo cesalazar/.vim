@@ -121,10 +121,7 @@ nnoremap <up> :move-2<cr>
 nnoremap <down> :move+1<cr>
 nnoremap <leader>: :Ack! 
 nnoremap <leader>; :AckWindow 
-nnoremap <leader>r :CtrlPMRU<cr>
-" nnoremap <M-r> :CtrlPMRU<cr>
 nnoremap <M-r> :History<cr>
-" nnoremap <M-b> :CtrlPBuffer<CR>
 nnoremap <leader>CC :set textwidth=0 colorcolumn=<cr>
 nnoremap <leader>cc :set textwidth=80 colorcolumn=+1<cr>
 nnoremap <leader>bd :.,$-bdelete<cr>
@@ -431,43 +428,27 @@ augroup END
 
 
 augroup ToggleBars
+  au!
   let s:hidden_all = 0
   function! ToggleHiddenAll()
-    if s:hidden_all  == 0
+    if s:hidden_all == 0
       let s:hidden_all = 1
       set noshowmode
       set noruler
       set laststatus=0
       set noshowcmd
+      let g:vem_tabline_show=0
     else
       let s:hidden_all = 0
       set showmode
       set ruler
       set laststatus=2
       set showcmd
+      let g:vem_tabline_show=2
     endif
   endfunction
-
   nnoremap <M-q> :call ToggleHiddenAll()<CR>
 augroup END
-
-
-" ctrlp config
-" let g:ctrlp_bufname_mod = ':~:.'
-" let g:ctrlp_bufname_mod = ':p'
-let g:ctrlp_map = '<C-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_arg_map = 1
-let g:ctrlp_open_multiple_files = 'i'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
-let g:ctrlp_prompt_mappings = {
-    \ 'PrtDeleteEnt()':       ['<C-x>'],
-    \ 'AcceptSelection("h")': ['<c-cr>', '<c-s>'],
-    \ 'MarkToOpen()':         ['<C-g>'],
-    \ 'PrtExit()':            ['<ESC>', '<C-c>'],
-    \ }
 
 
 " YankRing config
@@ -490,12 +471,6 @@ if executable('ag')
 
   "Use ag in ack.vim
   let g:ackprg = 'ag --nogroup --nocolor --column'
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag --nocolor --hidden -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 
