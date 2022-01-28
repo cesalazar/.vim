@@ -112,9 +112,9 @@ nnoremap <leader>P :set filetype=
 vnoremap <leader>b :Tabularize //l0<left><left><left>
 vnoremap <C-r> "hy:%s~<C-r>h~~gc<left><left><left>
 vnoremap <leader><C-r> "hy:%s~<C-r>h~<C-r>h~gc<left><left><left>
-nnoremap <leader>gd :Gvdiff<cr>
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>GC :Gcommit<cr>
+nnoremap <leader>gd :Gdiffsplit<cr>
+nnoremap <leader>gs :Git<cr>
+nnoremap <leader>GC :Git commit<cr>
 nnoremap <leader>w <C-w>
 nnoremap <leader>e :e!<cr>
 nnoremap <up> :move-2<cr>
@@ -801,49 +801,15 @@ let g:gutentags_file_list_command = {
       \ }
 
 
-" Goyo (jrnl)
-function! s:goyo_enter()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  set spell
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-endfunction
-
-function! s:goyo_leave()
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
-
-autocmd! User GoyoEnter call <SID>goyo_enter()
-autocmd! User GoyoLeave call <SID>goyo_leave()
-
-function! JrnlSettings()
-  Goyo 120x80%
-endfunction
-command! JrnlSettings call JrnlSettings()
-
-
-" Disable ex mode
-" map Q <Nop>
-" nnoremap <C-q> <Nop>
-" nnoremap <M-j> <Nop>
-" nnoremap <M-k> <Nop>
-" nnoremap <C-w> <Nop>
-
-
 " Uppercase work just like lowercase
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
 cnoreabbrev X x
+cnoreabbrev Gblame Git blame
+cnoreabbrev Gstatus Git
+cnoreabbrev Gcommit Git commit
 
 
 " vim: fdm=manual tabstop=2 softtabstop=2 shiftwidth=2 expandtab:
