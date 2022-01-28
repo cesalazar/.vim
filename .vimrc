@@ -691,8 +691,10 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 aug Twig
   au!
   autocmd FileType,BufRead,BufNewFile *.twig setlocal tabstop=2 shiftwidth=2 nosmartindent nobreakindent noexpandtab
-        \ | set filetype=html.twig.javascript
+        \ | call SyntaxRange#Include('<style>', '</style> %}', 'css', 'NonText')
         \ | call SyntaxRange#Include('{% js %}', '{% endjs %}', 'javascript', 'NonText')
+        \ | call SyntaxRange#Include('<script>', '</script>', 'javascript', 'NonText')
+        \ | set filetype=javascript.twig.html
 aug END
 
 

@@ -133,3 +133,6 @@
 [submodule "bundle/vem-tabline"]
 	path = bundle/vem-tabline
 	url = https://github.com/pacha/vem-tabline
+[submodule "bundle/SyntaxRange"]
+	path = bundle/SyntaxRange
+	url = https://github.com/vim-scripts/SyntaxRange.git
