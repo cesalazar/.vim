@@ -22,7 +22,7 @@ hi FoldColumn    ctermfg=162     ctermbg=None  cterm=Bold
 hi VertSplit     ctermfg=238     ctermbg=None  cterm=None
 hi ColorColumn   ctermfg=190     ctermbg=235   cterm=None
 hi Search                        ctermbg=88    cterm=Reverse
-hi StatusLine    ctermfg=190     ctermbg=None
+hi StatusLine    ctermfg=7       ctermbg=234     cterm=None
 hi StatusLineNC  ctermfg=190     ctermbg=None
 hi MatchParen    ctermfg=43      ctermbg=16    cterm=Bold
 hi SpellBad      ctermfg=198     ctermbg=0     cterm=Bold
@@ -32,9 +32,21 @@ hi CursorLine    ctermfg=None    ctermbg=235   cterm=None
 hi CursorColumn  ctermfg=None    ctermbg=235   cterm=None
 hi NERDTreeOpenable ctermfg=0    ctermbg=None  cterm=None
 hi Pmenu         ctermfg=15      ctermbg=17    cterm=None
+" hi GitGutterAdd  ctermfg=Green   ctermbg=0
+" hi GitGutterChange ctermfg=Yellow ctermbg=0
+" hi GitGutterDelete ctermfg=Red   ctermbg=0
+" hi GitGutterAddInvisible    ctermfg=0 ctermbg=0 guibg=Black
+" hi GitGutterChangeInvisible ctermfg=0 ctermbg=0 guibg=Black
+" hi GitGutterDeleteInvisible ctermfg=0 ctermbg=0 guibg=Black
+" hi GitGutterChangeDeleteInvisible ctermfg=0 ctermbg=0 guibg=Black
+"
+" hi! default link GitGutterChangeDelete GitGutterDelete
 " Overwrite for vim-javascript scheme
 hi! default link jsNull Constant
 hi! default link jsUndefined Constant
+hi TabLine         ctermfg=246     ctermbg=234     cterm=None
+hi TabLineFill     ctermfg=246     ctermbg=234     cterm=None
+hi TabLineSel      ctermfg=255     ctermbg=238     cterm=None
 
 
 " Config
@@ -73,17 +85,15 @@ set linebreak
 set nocursorline
 " hide the mode because it is displayed in the status bar
 set noshowmode
-" don't bother highlighting anything over 200 chars
-set synmaxcol=200
+" don't bother highlighting anything after this amount of chars
+set synmaxcol=1000
 set diffopt=internal,filler,vertical
 
 
-" Airline options
-let g:airline_section_b=''
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#show_close_button = 0
+" Vem Tabline
+let g:vem_tabline_show=2
+" nnoremap <M-,> <Plug>(vem_move_buffer_left-)
+" nnoremap <M-.> <Plug>(vem_move_buffer_right-)
 
 
 " Multiple cursors
@@ -96,6 +106,7 @@ let g:multi_cursor_exit_from_insert_mode = 1
 " Mappings
 let mapleader = "-"
 nnoremap <M-n> :NERDTreeTabsToggle<cr>
+" nnoremap <M-n> :silent 14 Lexplore<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
 nnoremap <leader><esc><esc> :q!<cr>
@@ -104,7 +115,7 @@ nnoremap <leader>M :set mouse=""<cr>:set mouse?<cr>
 nnoremap <leader>vs :vsplit<cr>
 nnoremap <leader>hs :split<cr>
 nnoremap <leader>o :only<cr>
-nnoremap <leader>`` :bd!<cr>
+nnoremap <leader>`` :bdelete!<cr>
 nnoremap <leader>n :enew<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>T :tag 
@@ -123,16 +134,19 @@ nnoremap <down> :move+1<cr>
 nnoremap <leader>: :Ack! 
 nnoremap <leader>; :AckWindow 
 nnoremap <leader>r :CtrlPMRU<cr>
-nnoremap <M-r> :CtrlPMRU<cr>
+" nnoremap <M-r> :CtrlPMRU<cr>
+nnoremap <M-r> :History<cr>
 " nnoremap <M-b> :CtrlPBuffer<CR>
 nnoremap <leader>CC :set textwidth=0 colorcolumn=<cr>
-nnoremap <leader>cc :set textwidth=78 colorcolumn=+1,+2<cr>
+nnoremap <leader>cc :set textwidth=80 colorcolumn=+1<cr>
 nnoremap <leader>bd :.,$-bdelete<cr>
 nnoremap <leader>cd :cd %:p:h<cr>
 nnoremap <leader>Z vipzf
 " Switch buffers
-nnoremap <M-i> :bprev<cr>
-nnoremap <M-o> :bnext<cr>
+nnoremap <M-i> :call vem_tabline#tabline.select_next_buffer(1)<cr>
+nnoremap <M-o> :call vem_tabline#tabline.select_next_buffer(0)<cr>
+nnoremap <Home> :call vem_tabline#tabline.move_buffer(0)<cr>
+nnoremap <End> :call vem_tabline#tabline.move_buffer(1)<cr>
 " highlight last inserted text
 nnoremap gV `[v`]
 nnoremap <M-e> :ALEToggle<cr>
@@ -166,7 +180,8 @@ vnoremap <silent> <leader>d "_d
 nnoremap <M-s> :set spell!<cr>
 vnoremap <M-s> :'<,'>sort<cr>
 nnoremap <M-m> :Gblame<cr>
-nnoremap <silent><Tab> <C-w><C-w>
+" nnoremap <silent><Tab> <C-w><C-w>
+nnoremap <C-i> <C-i>
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -180,13 +195,36 @@ nnoremap <silent> P P`]
 nnoremap <leader>gv `[v`]
 
 
+" Netrw
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_keepdir=1
+let g:netrw_liststyle=3
+let g:netrw_sort_options='i'
+let g:netrw_wiw=10
+let g:netrw_xstrlen=2
+
+augroup netrw_mapping
+  autocmd!
+  autocmd filetype netrw call NetrwMapping()
+
+  function! NetrwMapping()
+    noremap <buffer> - <leader>
+    noremap <buffer> <C-l> <C-w>l
+    noremap <buffer> <F1> :H netrw-contents<cr>
+  endfunction
+augroup END
+
+
 " Git blame on a pop-up window
 " https://www.reddit.com/r/vim/comments/i50pce/how_to_show_commit_that_introduced_current_line/
-nnoremap <silent><Leader>l :call setbufvar(winbufnr(
+augroup GitBlamePopup
+  nnoremap <silent><Leader>l :call setbufvar(winbufnr(
         \ popup_atcursor(
           \ split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"),
           \ { "padding": [1,2,1,2], "pos": "botleft", "wrap": 0, "border": [0,0,0,1] }
         \ )), "&filetype", "git" )<CR>
+augroup END
 
 
 " Copy paths to clipboard
@@ -210,7 +248,20 @@ augroup END
 " Beautify xml and json (not too happy with the current keys)
 map <F9> :% !python -m json.tool <cr>
 map <F10> :% !xmllint --format - <cr>
-map <F11> :% !prettier --stdin --stdin-filepath % <cr>
+" map <F11> :ALEFix<cr>
+map <F11> :% !prettier --stdin-filepath % <cr>
+" map <F11> :% !prettier --no-semi --single-quote --trailing-comma es5 --stdin-filepath %<cr>
+
+" augroup Prettier
+"   function! PrettiIt()
+"     let l:cursor_pos = getcurpos()
+"     let l:cursor_line = cursor_pos[1]
+"     let l:cursor_column = cursor_pos[4]
+"     exec "% !prettier --no-semi --single-quote --trailing-comma es5 --stdin-filepath %"
+"     " call cursor(cursor_line, cursor_column)
+"   endfunction
+"   nnoremap <F11> :call PrettiIt()<cr>
+" augroup END
 
 
 " Treat long lines as break lines (useful when moving around in them)
@@ -330,13 +381,13 @@ augroup ConvertLink
       \ <line1>,<line2>s~\[\(.\{-}\)\](\(.\{-}\))~<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>~ge
 
   command! -range HTMLLinkToMD
-      \ <line1>,<line2>s~<a.\{-}href="\(https\?://.\{-}\)".\{-}>\(.\{-}\)</a>~\[\2\](\1\)~ge
+      \ <line1>,<line2>s~<a.\{-}href="\(.\{-}\)".\{-}>\(.\{-}\)</a>~\[\2\](\1\)~ge
 augroup END
 
 
 " Close all buffers except current
 augroup CloseOtherBuffers
-  command! BufOnly silent! execute "%bd|e#|bd#"
+  command! BufOnly silent! execute "%bdelete|e#|bdelete#"
 augroup END
 
 
@@ -351,6 +402,8 @@ augroup FixContent
     %s~\([\.|;|,]\)\(["|“|(|\[]\)~\1 \2~ge
     " Add a space after puntuation followed by a character or a number
     %s~\([\.|;|,|!|?]\)\([a-z|A-Z|0-9]\)~\1 \2~ge
+    " Remove space before puntuation or symbol
+    %s~\(\s\+\)\?\(["|”|)|\]|\.|;|,|!|?]\)~\2~ge
   endfunction
 
   function! FixSpaces()
@@ -360,9 +413,9 @@ augroup FixContent
     %s~\s\+$~~ge
   endfunction
 
-  command! FixPunctuation call FixPunctuation()
-  command! FixSpaces call FixSpaces()
-  command! FixContent call FixPunctuation() | call FixSpaces()
+  command! FixPunctuation silent call FixPunctuation()
+  command! FixSpaces silent call FixSpaces()
+  command! FixContent silent call FixPunctuation() | silent call FixSpaces()
 augroup END
 
 
@@ -372,10 +425,8 @@ let g:indentLine_color_term = 236
 let g:indentLine_fileTypeExclude = ['json']
 
 
-" Delete buffer
-" map <leader>x :bd<cr>
 " Delete a buffer but keep layout
-command! Kwbd bp|bw #
+command! Kwbd bprev|bwipeout #
 nmap <leader>x :Kwbd<CR> 
 
 
@@ -388,6 +439,28 @@ nmap <leader>\ :tab sball<cr>:tabonly<cr>
 augroup autosourcing
     autocmd!
     autocmd BufWritePost .vimrc source %
+augroup END
+
+
+augroup ToggleBars
+  let s:hidden_all = 0
+  function! ToggleHiddenAll()
+    if s:hidden_all  == 0
+      let s:hidden_all = 1
+      set noshowmode
+      set noruler
+      set laststatus=0
+      set noshowcmd
+    else
+      let s:hidden_all = 0
+      set showmode
+      set ruler
+      set laststatus=2
+      set showcmd
+    endif
+  endfunction
+
+  nnoremap <M-q> :call ToggleHiddenAll()<CR>
 augroup END
 
 
@@ -424,7 +497,8 @@ nnoremap <silent> <F8> :TlistToggle<CR>
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ -aU\ --hidden\ --nogroup\ --nocolor
+  " set grepprg="ag -aU --hidden --nogroup --nocolor"
 
   "Use ag in ack.vim
   let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -444,25 +518,32 @@ let g:jsx_ext_required = 0
 " ALE
 let g:ale_enabled = 0
 let g:ale_fix_on_save = 0
-let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_javascript_eslint_suppress_missing_config = 0
+let g:ale_javascript_eslint_suppress_eslintignore = 1
 " TODO: check ALE/eslint mentally-challenged changes to lint JS
 " let g:ale_javascript_standard_options = '--parser @babel/eslint-parser'
 " let g:ale_javascript_standard_options = '--parser @typescript-eslint/parser'
 " let g:ale_javascript_standard_options = '--parser typescript-eslint-parser'
+let g:ale_javascript_prettier_options = '--no-semi --single-quote --trailing-comma es5'
+let g:ale_php_phpcs_executable='./vendor/bin/phpcs'
+let g:ale_php_php_cs_fixer_executable='./vendor/bin/php-cs-fixer'
 
+" This seems unnecessary. See: https://github.com/dense-analysis/ale#5-faq
 let g:ale_fixers = {
     \   'typescrypt': [
     \       'eslint',
     \   ],
     \   'javascript': [
     \       'eslint',
+    \       'prettier',
     \   ],
     \   'jsx': [
     \       'eslint',
+    \       'prettier',
     \   ],
     \   'vue': [
     \       'eslint',
@@ -474,10 +555,13 @@ let g:ale_fixers = {
     \       'stylelint',
     \   ],
     \   'php': [
-    \       'phpcbf',
+    \       'php_cs_fixer',
     \   ],
     \   'python': [
     \       'black',
+    \   ],
+    \   'twig': [
+    \       'prettier',
     \   ],
     \}
 
@@ -535,7 +619,7 @@ let g:undotree_DiffpanelHeight = 6
 let g:undotree_SetFocusWhenToggle = 1
 if has("persistent_undo")
     nnoremap <F5> :UndotreeToggle<cr>
-    set undodir=$HOME/.vim/undodir//
+    set undodir=$HOME/.vim/undodir/
     set undofile
 endif
 
@@ -621,6 +705,13 @@ aug StyledComponents
 aug END
 
 
+" Splitjoin
+let g:splitjoin_trailing_comma=1
+let g:splitjoin_html_attributes_hanging=1
+ 
+ 
+
+
 " pcss
 aug CSS
   au!
@@ -698,7 +789,7 @@ endw
 
 
 " fzf
-let $FZF_DEFAULT_COMMAND = 'ag --nocolor --hidden --ignore .git -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag -aU --nocolor --hidden --ignore .git -g ""'
 nnoremap <M-a> :Ag!<space>
 vnoremap <M-a> y:Ag!<space><C-r>"
 nnoremap <M-h> :History<cr>
