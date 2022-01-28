@@ -80,8 +80,6 @@ set wildmode=list:longest,full
 
 " Vem Tabline
 let g:vem_tabline_show=2
-" nnoremap <M-,> <Plug>(vem_move_buffer_left-)
-" nnoremap <M-.> <Plug>(vem_move_buffer_right-)
 
 
 " Multiple cursors
@@ -617,7 +615,8 @@ let g:SuperTabCompleteCase='match'
 
 " Git commit message
 aug Commit
-  autocmd BufRead COMMIT_EDITMSG setlocal spell textwidth=70 colorcolumn=+1,+2
+  au!
+  autocmd BufRead COMMIT_EDITMSG setlocal spell textwidth=72 colorcolumn=+1
 aug END
 
 
@@ -642,31 +641,34 @@ aug END
 
 
 " Automatically include last typed command
-nnoremap <expr> : ShowLastCmd()
-function! ShowLastCmd()
-    echohl ModeMsg
-    echo ':' . getreg(':')
-    echohl None
+aug ShowLastCommand
+  au!
+  function! ShowLastCmd()
+      echohl ModeMsg
+      echo ':' . getreg(':')
+      echohl None
 
-    while 1
-        try
-            let char = getchar()
-            if char == '^\d\+$' || type(char) == 0
-                let char = nr2char(char)
-            endif
-        catch /^Vim:Interrupt$/
-            return ''
-        endtry
+      while 1
+          try
+              let char = getchar()
+              if char == '^\d\+$' || type(char) == 0
+                  let char = nr2char(char)
+              endif
+          catch /^Vim:Interrupt$/
+              return ''
+          endtry
 
-        if char == "\<cursorhold>"
-            continue
-        elseif char == "\<cr>"
-            return ':' . getreg(':') . "\<cr>"
-        else
-            return ':' . char
-        endif
-    endwhile
-endfunction
+          if char == "\<cursorhold>"
+              continue
+          elseif char == "\<cr>"
+              return ':' . getreg(':') . "\<cr>"
+          else
+              return ':' . char
+          endif
+      endwhile
+  endfunction
+  nnoremap <expr> : ShowLastCmd()
+aug END
 
 
 " fix meta-keys (alt) which generate <Esc>a .. <Esc>z
