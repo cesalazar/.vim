@@ -550,13 +550,8 @@ map zs/ <Plug>(incsearch-fuzzy-stay)
 let g:webdevicons_enable_nerdtree = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-" let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-" let g:DevIconsEnableFolderPatternMatching = 1
-" let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-" let g:DevIconsDefaultFolderOpenSymbol = ''
-" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
 
 
 " NERDTree
@@ -579,14 +574,6 @@ let g:nerdtree_tabs_synchronize_view = 0
 let g:nerdtree_tabs_smart_startup_focus = 1
 let g:nerdtree_tabs_no_startup_for_diff = 1
 let g:nerdtree_tabs_open_on_gui_startup = 0
-
-
-" Open NERDTree only if no file was specified
-" let g:nerdtree_tabs_open_on_console_startup = 0
-"
-" 2020-07-28 Disabled to evaluate if I should get rid of this:
-" autocmd StdinReadPre * let s:std_in = 1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | let g:nerdtree_tabs_open_on_console_startup = 1 | endif 
 
 
 " PHP, Blade, Twig
@@ -692,7 +679,7 @@ endw
 
 
 " fzf
-let $FZF_DEFAULT_COMMAND = 'ag -aU --nocolor --hidden --ignore .git -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --nocolor --hidden --ignore .git -g ""'
 nnoremap <M-a> :Ag!<space>
 vnoremap <M-a> y:Ag!<space><C-r>"
 nnoremap <M-h> :History<cr>
