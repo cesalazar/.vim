@@ -42,43 +42,40 @@ hi! default link jsUndefined Constant
 
 " Config
 let &showbreak='↪ '
-set encoding=utf-8
-set listchars=eol:¬,tab:▸-,extends:❯,precedes:❮,space:·,trail:X,nbsp:!
-set number
-set ignorecase
-set mouse=a
-set background=light
 set autoindent
 set autoread
+set background=light
+set backup
+set backupcopy=yes
+set breakindent
+set completeopt+=longest
+set diffopt=internal,filler,vertical
+set encoding=utf-8
 set expandtab
+set foldcolumn=2
+set hidden
+set ignorecase
+set incsearch
+set infercase
+set linebreak
+set listchars=eol:¬,tab:▸-,extends:❯,precedes:❮,space:·,trail:X,nbsp:!
+set mouse=a
+set nocursorline
+set nowrap
+set number
+set scrolloff=7
+set selection=inclusive
+set shiftwidth=2
 set smarttab
 set softtabstop=2
-set tabstop=4
-set shiftwidth=2
-set incsearch
 set splitbelow
 set splitright
+set synmaxcol=500 " don't highlight anything after this amount of chars
+set tabstop=4
+set updatetime=250
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.rar
 set wildmenu
 set wildmode=list:longest,full
-set completeopt+=longest
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.rar
-set scrolloff=7
-set updatetime=250
-set hidden
-set backupcopy=yes
-set backup
-set foldcolumn=2
-set selection=inclusive
-" set selection=exclusive
-set infercase
-set breakindent
-set linebreak
-set nocursorline
-" hide the mode because it is displayed in the status bar
-set noshowmode
-" don't bother highlighting anything after this amount of chars
-set synmaxcol=1000
-set diffopt=internal,filler,vertical
 
 
 " Vem Tabline
