@@ -11,42 +11,33 @@ filetype plugin indent on
 
 
 " Colors
-hi Visual        ctermfg=None    ctermbg=None  cterm=Bold,Underline
-hi Noise         ctermfg=Yellow
-hi DiffAdd                       ctermbg=273
-hi DiffChange                    ctermbg=52    cterm=None
-hi DiffText      ctermfg=225     ctermbg=162
-hi DiffDelete    ctermfg=15      ctermbg=52
-hi Folded        ctermfg=162     ctermbg=None  cterm=Bold
-hi FoldColumn    ctermfg=162     ctermbg=None  cterm=Bold
-hi VertSplit     ctermfg=238     ctermbg=None  cterm=None
-hi ColorColumn   ctermfg=190     ctermbg=235   cterm=None
-hi Search                        ctermbg=88    cterm=Reverse
-hi StatusLine    ctermfg=7       ctermbg=234     cterm=None
-hi StatusLineNC  ctermfg=190     ctermbg=None
-hi MatchParen    ctermfg=43      ctermbg=16    cterm=Bold
-hi SpellBad      ctermfg=198     ctermbg=0     cterm=Bold
-hi LineNr        ctermfg=237     ctermbg=None  cterm=None
-hi CursorLineNr  ctermfg=43      ctermbg=None  cterm=None
-hi CursorLine    ctermfg=None    ctermbg=235   cterm=None
-hi CursorColumn  ctermfg=None    ctermbg=235   cterm=None
-hi NERDTreeOpenable ctermfg=0    ctermbg=None  cterm=None
-hi Pmenu         ctermfg=15      ctermbg=17    cterm=None
-" hi GitGutterAdd  ctermfg=Green   ctermbg=0
-" hi GitGutterChange ctermfg=Yellow ctermbg=0
-" hi GitGutterDelete ctermfg=Red   ctermbg=0
-" hi GitGutterAddInvisible    ctermfg=0 ctermbg=0 guibg=Black
-" hi GitGutterChangeInvisible ctermfg=0 ctermbg=0 guibg=Black
-" hi GitGutterDeleteInvisible ctermfg=0 ctermbg=0 guibg=Black
-" hi GitGutterChangeDeleteInvisible ctermfg=0 ctermbg=0 guibg=Black
-"
-" hi! default link GitGutterChangeDelete GitGutterDelete
+hi ColorColumn        ctermfg=190     ctermbg=235     cterm=None
+hi CursorColumn       ctermfg=None    ctermbg=235     cterm=None
+hi CursorLine         ctermfg=None    ctermbg=235     cterm=None
+hi CursorLineNr       ctermfg=43      ctermbg=None    cterm=None
+hi DiffAdd                            ctermbg=273
+hi DiffChange                         ctermbg=52      cterm=None
+hi DiffDelete         ctermfg=15      ctermbg=52
+hi DiffText           ctermfg=225     ctermbg=162
+hi FoldColumn         ctermfg=162     ctermbg=None    cterm=Bold
+hi Folded             ctermfg=162     ctermbg=None    cterm=Bold
+hi LineNr             ctermfg=237     ctermbg=None    cterm=None
+hi MatchParen         ctermfg=43      ctermbg=16      cterm=Bold
+hi NERDTreeOpenable   ctermfg=0       ctermbg=None    cterm=None
+hi Noise              ctermfg=Yellow
+hi Pmenu              ctermfg=15      ctermbg=17      cterm=None
+hi Search                             ctermbg=88      cterm=Reverse
+hi SpellBad           ctermfg=198     ctermbg=0       cterm=Bold
+hi StatusLine         ctermfg=7       ctermbg=234     cterm=None
+hi StatusLineNC       ctermfg=190     ctermbg=None
+hi TabLine            ctermfg=246     ctermbg=234     cterm=None
+hi TabLineFill        ctermfg=246     ctermbg=234     cterm=None
+hi TabLineSel         ctermfg=255     ctermbg=238     cterm=None
+hi VertSplit          ctermfg=238     ctermbg=None    cterm=None
+hi Visual             ctermfg=None    ctermbg=None    cterm=Bold,Underline
 " Overwrite for vim-javascript scheme
 hi! default link jsNull Constant
 hi! default link jsUndefined Constant
-hi TabLine         ctermfg=246     ctermbg=234     cterm=None
-hi TabLineFill     ctermfg=246     ctermbg=234     cterm=None
-hi TabLineSel      ctermfg=255     ctermbg=238     cterm=None
 
 
 " Config
