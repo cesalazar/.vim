@@ -681,12 +681,42 @@ let g:gutentags_file_list_command = {
       \ }
 
 
+" Custom statusline
+" https://gist.github.com/suderman/1243665
+aug Statusline
+  let g:modes={
+        \ "\<C-V>": 'VBlock',
+        \ 'c': 'Command',
+        \ 'i': 'Insert',
+        \ 'n': 'Normal',
+        \ 'R': 'Replace',
+        \ 'Rv': 'VReplace',
+        \ 'V': 'V·Line',
+        \ 'v': 'Visual',
+        \}
+
+  set statusline=
+  set statusline+=\ %{'['.toupper(g:modes[mode()]).']'}  " mode
+  set statusline+=\ %F\                          " filename
+  set statusline+=%h                             " help file flag
+  set statusline+=%m                             " modified flag
+  set statusline+=%{&paste?'[PASTE]':''}         " paste mode
+  set statusline+=%#Number#%r%*                  " read only flag
+  set statusline+=%=                             " left/right separator
+  set statusline+=%5(%{&filetype}%)              " filetype
+  set statusline+=%6(%c%),                       " cursor column
+  set statusline+=%l/%L                          " cursor line/total lines
+  set statusline+=\ %3(%p%)%%\                   " percent through file
+aug END
+
+
 " Uppercase work just like lowercase
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev QA qa
 cnoreabbrev X x
+cnoreabbrev Set set
 cnoreabbrev Gblame Git blame
 cnoreabbrev Gstatus Git
 cnoreabbrev Gcommit Git commit
