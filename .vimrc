@@ -295,20 +295,10 @@ nmap L <Plug>(easymotion-overwin-line)
 let g:user_emmet_mode = 'a'
 let g:use_emmet_complete_tag = 1
 let g:user_emmet_settings = {
-              \   'html': {
-              \     'empty_element_suffix': ' />',
-              \   },
-              \ }
-
-
-" Return to last active buffer
-nnoremap <silent>, <C-^>
-" Restore the cursor position when switching buffers
-aug CursorPosition
-  au!
-  au BufLeave * let b:winview = winsaveview()
-  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-aug END
+      \   'html': {
+      \     'empty_element_suffix': ' />',
+      \   },
+      \ }
 
 
 " Return to last active tab
@@ -607,14 +597,21 @@ let g:ultisnips_javascript = {
       \ }
 
 
-" Save/restore views (folds)
-aug AutoViews
+augroup RestoreCursorPosition
   au!
-  " Automatically save last view
-  autocmd BufWrite ?* mkview 0
-  " Restore the view automatically
-  autocmd BufRead ?* silent loadview 0
-aug END 
+
+  " Restore the last known cursor position when editing a file
+  " Source: vimStartup in /usr/share/vim/vim82/defaults.vim
+  autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+
+  " Restore the cursor position when switching buffers
+  au BufLeave * if &filetype != 'nerdtree' | let b:winview = winsaveview()
+  au BufEnter * if exists('b:winview') && &filetype != 'nerdtree'
+      \ | call winrestview(b:winview) | endif
+augroup END
 
 
 " Automatically include last typed command
