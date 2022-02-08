@@ -704,7 +704,7 @@ aug Statusline
   set statusline+=%#Number#%r%*                  " read only flag
   set statusline+=%=                             " left/right separator
   set statusline+=%5(%{&filetype}%)              " filetype
-  set statusline+=%6(%v%),                       " virtual column number
+  set statusline+=%6(%c%),                       " cursor column
   set statusline+=%l/%L                          " cursor line/total lines
   set statusline+=\ %3(%p%)%%\                   " percent through file
 aug END
