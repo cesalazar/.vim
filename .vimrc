@@ -307,22 +307,22 @@ au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <leader>, :exe "tabn ".g:lasttab<cr>
 
 
-" Return to the previous tab after closing the current one 
+" Return to the previous tab after closing the current one
 augroup TabClosed
-    autocmd! TabEnter * :if tabpagenr('$')<s:prevtabnum && tabpagenr()>1
-                \       |   tabprevious
-                \       |endif
-                \       |let s:prevtabnum=tabpagenr('$')
+  autocmd! TabEnter * :if tabpagenr('$')<s:prevtabnum && tabpagenr()>1
+      \ |   tabprevious
+      \ | endif
+      \ | let s:prevtabnum=tabpagenr('$')
 augroup END
 
 
 " Convert Markdown link to HTML, and viceversa
 augroup ConvertLink
   command! -range MDLinkToHTML
-      \ <line1>,<line2>s~\[\(.\{-}\)\](\(.\{-}\))~<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>~ge
+        \ <line1>,<line2>s~\[\(.\{-}\)\](\(.\{-}\))~<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>~ge
 
   command! -range HTMLLinkToMD
-      \ <line1>,<line2>s~<a.\{-}href="\(.\{-}\)".\{-}>\(.\{-}\)</a>~\[\2\](\1\)~ge
+        \ <line1>,<line2>s~<a.\{-}href="\(.\{-}\)".\{-}>\(.\{-}\)</a>~\[\2\](\1\)~ge
 augroup END
 
 
@@ -377,8 +377,8 @@ nmap <leader>\ :tab sball<cr>:tabonly<cr>
 
 " Automatically source the .vimrc file
 augroup autosourcing
-    autocmd!
-    autocmd BufWritePost .vimrc source %
+  autocmd!
+  autocmd BufWritePost .vimrc source %
 augroup END
 
 
@@ -548,7 +548,8 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 " The JS syntax highlighting requires: https://github.com/vim-scripts/SyntaxRange
 aug Twig
   au!
-  autocmd FileType,BufRead,BufNewFile *.twig setlocal tabstop=2 shiftwidth=2 nosmartindent nobreakindent noexpandtab
+  autocmd FileType,BufRead,BufNewFile *.twig
+        \ setlocal tabstop=2 shiftwidth=2 nosmartindent nobreakindent noexpandtab
         \ | call SyntaxRange#Include('<style>', '</style> %}', 'css', 'NonText')
         \ | call SyntaxRange#Include('{% js %}', '{% endjs %}', 'javascript', 'NonText')
         \ | call SyntaxRange#Include('<script>', '</script>', 'javascript', 'NonText')
