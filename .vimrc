@@ -91,7 +91,7 @@ let g:multi_cursor_exit_from_insert_mode = 1
 
 " Mappings
 let mapleader = "-"
-nnoremap <M-n> :NERDTreeTabsToggle<cr>
+nnoremap <M-n> :NERDTreeToggle<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
 nnoremap <leader><esc><esc> :q!<cr>
