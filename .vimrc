@@ -28,8 +28,8 @@ hi Noise              ctermfg=Yellow
 hi Pmenu              ctermfg=15      ctermbg=17      cterm=None
 hi Search                             ctermbg=88      cterm=Reverse
 hi SpellBad           ctermfg=198     ctermbg=0       cterm=Bold
-hi StatusLine         ctermfg=7       ctermbg=234     cterm=None
-hi StatusLineNC       ctermfg=190     ctermbg=None
+hi StatusLine         ctermfg=255     ctermbg=235     cterm=None
+hi StatusLineNC       ctermfg=246     ctermbg=233     cterm=None
 hi TabLine            ctermfg=246     ctermbg=234     cterm=None
 hi TabLineFill        ctermfg=246     ctermbg=234     cterm=None
 hi TabLineSel         ctermfg=255     ctermbg=238     cterm=None
@@ -66,13 +66,13 @@ set number
 set scrolloff=7
 set selection=inclusive
 set shiftwidth=2
+set showcmd
 set smarttab
 set softtabstop=2
 set splitbelow
 set splitright
 set synmaxcol=500 " don't highlight anything after this amount of chars
 set tabstop=4
-set updatetime=250
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.rar
 set wildmenu
 set wildmode=list:longest,full
