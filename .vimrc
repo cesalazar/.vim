@@ -162,9 +162,9 @@ nnoremap <silent> <leader>d "_d
 vnoremap <silent> <leader>d "_d
 nnoremap <M-s> :set spell!<cr>
 vnoremap <M-s> :sort i<cr>
-nnoremap <M-m> :Gblame<cr>
-" nnoremap <silent><Tab> <C-w><C-w>
-nnoremap <C-i> <C-i>
+nnoremap <M-m> :Git blame<cr>
+" Return to last active buffer
+nnoremap <silent>, <C-^>
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -289,7 +289,6 @@ let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
 let g:EasyMotion_enter_jump_first = 1
 map s <Plug>(easymotion-sn)
 nmap L <Plug>(easymotion-overwin-line)
-" map S <Plug>(easymotion-bd-wl)
 
 
 " emmet config
@@ -379,7 +378,7 @@ let g:indentLine_fileTypeExclude = ['json']
 
 " Delete a buffer but keep layout
 command! Kwbd bprev|bwipeout #
-nmap <leader>x :Kwbd<CR> 
+nmap <leader>x :Kwbd<CR>
 
 
 " Move each buffer to its own tab
