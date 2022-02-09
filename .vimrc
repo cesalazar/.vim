@@ -91,7 +91,7 @@ let g:multi_cursor_exit_from_insert_mode = 1
 
 " Mappings
 let mapleader = "-"
-nnoremap <M-n> :NERDTreeTabsToggle<cr>
+nnoremap <M-n> :NERDTreeToggle<cr>
 nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>u :set number!<cr>
 nnoremap <leader><esc><esc> :q!<cr>
@@ -162,9 +162,9 @@ nnoremap <silent> <leader>d "_d
 vnoremap <silent> <leader>d "_d
 nnoremap <M-s> :set spell!<cr>
 vnoremap <M-s> :sort i<cr>
-nnoremap <M-m> :Gblame<cr>
-" nnoremap <silent><Tab> <C-w><C-w>
-nnoremap <C-i> <C-i>
+nnoremap <M-m> :Git blame<cr>
+" Return to last active buffer
+nnoremap <silent>, <C-^>
 
 
 " Automatically jump to the end of the text copied/pasted
@@ -289,27 +289,16 @@ let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
 let g:EasyMotion_enter_jump_first = 1
 map s <Plug>(easymotion-sn)
 nmap L <Plug>(easymotion-overwin-line)
-" map S <Plug>(easymotion-bd-wl)
 
 
 " emmet config
 let g:user_emmet_mode = 'a'
 let g:use_emmet_complete_tag = 1
 let g:user_emmet_settings = {
-              \   'html': {
-              \     'empty_element_suffix': ' />',
-              \   },
-              \ }
-
-
-" Return to last active buffer
-nnoremap <silent>, <C-^>
-" Restore the cursor position when switching buffers
-aug CursorPosition
-  au!
-  au BufLeave * let b:winview = winsaveview()
-  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-aug END
+      \   'html': {
+      \     'empty_element_suffix': ' />',
+      \   },
+      \ }
 
 
 " Return to last active tab
@@ -318,22 +307,22 @@ au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <leader>, :exe "tabn ".g:lasttab<cr>
 
 
-" Return to the previous tab after closing the current one 
+" Return to the previous tab after closing the current one
 augroup TabClosed
-    autocmd! TabEnter * :if tabpagenr('$')<s:prevtabnum && tabpagenr()>1
-                \       |   tabprevious
-                \       |endif
-                \       |let s:prevtabnum=tabpagenr('$')
+  autocmd! TabEnter * :if tabpagenr('$')<s:prevtabnum && tabpagenr()>1
+      \ |   tabprevious
+      \ | endif
+      \ | let s:prevtabnum=tabpagenr('$')
 augroup END
 
 
 " Convert Markdown link to HTML, and viceversa
 augroup ConvertLink
   command! -range MDLinkToHTML
-      \ <line1>,<line2>s~\[\(.\{-}\)\](\(.\{-}\))~<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>~ge
+        \ <line1>,<line2>s~\[\(.\{-}\)\](\(.\{-}\))~<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>~ge
 
   command! -range HTMLLinkToMD
-      \ <line1>,<line2>s~<a.\{-}href="\(.\{-}\)".\{-}>\(.\{-}\)</a>~\[\2\](\1\)~ge
+        \ <line1>,<line2>s~<a.\{-}href="\(.\{-}\)".\{-}>\(.\{-}\)</a>~\[\2\](\1\)~ge
 augroup END
 
 
@@ -379,7 +368,7 @@ let g:indentLine_fileTypeExclude = ['json']
 
 " Delete a buffer but keep layout
 command! Kwbd bprev|bwipeout #
-nmap <leader>x :Kwbd<CR> 
+nmap <leader>x :Kwbd<CR>
 
 
 " Move each buffer to its own tab
@@ -388,8 +377,8 @@ nmap <leader>\ :tab sball<cr>:tabonly<cr>
 
 " Automatically source the .vimrc file
 augroup autosourcing
-    autocmd!
-    autocmd BufWritePost .vimrc source %
+  autocmd!
+  autocmd BufWritePost .vimrc source %
 augroup END
 
 
@@ -559,7 +548,8 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 " The JS syntax highlighting requires: https://github.com/vim-scripts/SyntaxRange
 aug Twig
   au!
-  autocmd FileType,BufRead,BufNewFile *.twig setlocal tabstop=2 shiftwidth=2 nosmartindent nobreakindent noexpandtab
+  autocmd FileType,BufRead,BufNewFile *.twig
+        \ setlocal tabstop=2 shiftwidth=2 nosmartindent nobreakindent noexpandtab
         \ | call SyntaxRange#Include('<style>', '</style> %}', 'css', 'NonText')
         \ | call SyntaxRange#Include('{% js %}', '{% endjs %}', 'javascript', 'NonText')
         \ | call SyntaxRange#Include('<script>', '</script>', 'javascript', 'NonText')
@@ -608,14 +598,21 @@ let g:ultisnips_javascript = {
       \ }
 
 
-" Save/restore views (folds)
-aug AutoViews
+augroup RestoreCursorPosition
   au!
-  " Automatically save last view
-  autocmd BufWrite ?* mkview 0
-  " Restore the view automatically
-  autocmd BufRead ?* silent loadview 0
-aug END 
+
+  " Restore the last known cursor position when editing a file
+  " Source: vimStartup in /usr/share/vim/vim82/defaults.vim
+  autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+
+  " Restore the cursor position when switching buffers
+  au BufLeave * if &filetype != 'nerdtree' | let b:winview = winsaveview()
+  au BufEnter * if exists('b:winview') && &filetype != 'nerdtree'
+      \ | call winrestview(b:winview) | endif
+augroup END
 
 
 " Automatically include last typed command
